@@ -1,4 +1,4 @@
-package edu.uw.data.lecture5.model;
+package edu.uw.data.lecture8.model;
 
 import javax.persistence.*;
 import java.sql.Date;

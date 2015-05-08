@@ -44,4 +44,19 @@
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
 
-</beans>
+    <!-- This  next line enabled component scanning for all mybatis related spring beans,
+              we don't need to configure each bean in the app context.
+         This is very similar to what we use for JPA entity and repository scanning
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="edu.uw.data" />
+    </bean>
+
+
+    <!-- MyBatis needs a sqlSessionFactory Bean defined.-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    </beans>

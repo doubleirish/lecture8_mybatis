@@ -13,15 +13,19 @@
     <!--</jdbc:embedded-database>-->
 
 
-
-
-
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-        <property name="url" value="jdbc:derby:tempDb;create=true"/>
-        <property name="username"  value="app"/>
-        <property name="password" value="app"/>
+    <bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource">
+        <constructor-arg>
+            <bean   class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+                <property name="url" value="jdbc:derby:tempDb;create=true"/>
+                <property name="username"  value="app"/>
+                <property name="password" value="app"/>
+            </bean>
+        </constructor-arg>
     </bean>
+
+
+
 
     <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
         <jdbc:script location="classpath:sql/drop_classic.sql" />
@@ -36,6 +40,7 @@
         <jdbc:script location="classpath:sql/insert_6orders.sql" />
         <jdbc:script location="classpath:sql/insert_7orderdetails.sql" />
         <jdbc:script location="classpath:sql/insert_8payments.sql" />
+
 
     </jdbc:initialize-database>
 
