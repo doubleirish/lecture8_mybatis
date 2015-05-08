@@ -1,5 +1,8 @@
 package edu.uw.data.lecture8.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,26 +13,26 @@ import java.util.Set;
 @Entity
 @Table(name = "OFFICES")
 public class Office {
-  private String officecode;
+  private String officeCode;
   private String city;
   private String phone;
-  private String addressline1;
-  private String addressline2;
+  private String addressLine1;
+  private String addressLine2;
   private String state;
   private String country;
-  private String postalcode;
+  private String postalCode;
   private String territory;
 
   private Set<Employee> employees =new HashSet<>();
 
   @Id
-  @Column(name = "OFFICECODE",  length = 10, nullable = false, insertable = true, updatable = true)
-  public String getOfficecode() {
-    return officecode;
+  @Column(name = "OFFICE_CODE",  length = 10, nullable = false, insertable = true, updatable = true)
+  public String getOfficeCode() {
+    return officeCode;
   }
 
-  public void setOfficecode(String officecode) {
-    this.officecode = officecode;
+  public void setOfficeCode(String officeCode) {
+    this.officeCode = officeCode;
   }
 
   @Basic
@@ -53,23 +56,23 @@ public class Office {
   }
 
   @Basic
-  @Column(name = "ADDRESSLINE1", nullable = true, insertable = true, updatable = true, length = 50)
-  public String getAddressline1() {
-    return addressline1;
+  @Column(name = "ADDRESS_LINE1", nullable = true, insertable = true, updatable = true, length = 50)
+  public String getAddressLine1() {
+    return addressLine1;
   }
 
-  public void setAddressline1(String addressline1) {
-    this.addressline1 = addressline1;
+  public void setAddressLine1(String addressLine1) {
+    this.addressLine1 = addressLine1;
   }
 
   @Basic
-  @Column(name = "ADDRESSLINE2", nullable = true, insertable = true, updatable = true, length = 50)
-  public String getAddressline2() {
-    return addressline2;
+  @Column(name = "ADDRESS_LINE2", nullable = true, insertable = true, updatable = true, length = 50)
+  public String getAddressLine2() {
+    return addressLine2;
   }
 
-  public void setAddressline2(String addressline2) {
-    this.addressline2 = addressline2;
+  public void setAddressLine2(String addressLine2) {
+    this.addressLine2 = addressLine2;
   }
 
   @Basic
@@ -93,13 +96,13 @@ public class Office {
   }
 
   @Basic
-  @Column(name = "POSTALCODE", nullable = true, insertable = true, updatable = true, length = 15)
-  public String getPostalcode() {
-    return postalcode;
+  @Column(name = "POSTAL_CODE", nullable = true, insertable = true, updatable = true, length = 15)
+  public String getPostalCode() {
+    return postalCode;
   }
 
-  public void setPostalcode(String postalcode) {
-    this.postalcode = postalcode;
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
   }
 
   @Basic
@@ -124,16 +127,17 @@ public class Office {
 
   @Override
   public String toString() {
-    return "Office{" +
-        "officecode='" + officecode + '\'' +
-        ", city='" + city + '\'' +
-        ", phone='" + phone + '\'' +
-        ", addressline1='" + addressline1 + '\'' +
-        ", addressline2='" + addressline2 + '\'' +
-        ", state='" + state + '\'' +
-        ", country='" + country + '\'' +
-        ", postalcode='" + postalcode + '\'' +
-        ", territory='" + territory + '\'' +
-        '}';
+    ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
+    return new ToStringBuilder(this)
+        .append("officeCode", officeCode)
+        .append("city", city)
+        .append("phone", phone)
+        .append("addressLine1", addressLine1)
+        .append("addressLine2", addressLine2)
+        .append("state", state)
+        .append("country", country)
+        .append("postalCode", postalCode)
+        .append("territory", territory)
+        .toString();
   }
 }

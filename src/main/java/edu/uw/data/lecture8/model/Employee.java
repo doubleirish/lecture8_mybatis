@@ -22,7 +22,7 @@ public class Employee {
   private Set<Customer> customers = new HashSet<>();
 
   @Id
-  @Column(name = "EMPLOYEENUMBER", nullable = false, insertable = true, updatable = true)
+  @Column(name = "EMPLOYEE_NUMBER", nullable = false, insertable = true, updatable = true)
   public Integer getEmployeeNumber() {
     return employeeNumber;
   }
@@ -32,7 +32,7 @@ public class Employee {
   }
 
   @Basic
-  @Column(name = "LASTNAME", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "LAST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
   public String getLastName() {
     return lastName;
   }
@@ -42,7 +42,7 @@ public class Employee {
   }
 
   @Basic
-  @Column(name = "FIRSTNAME", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "FIRST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
   public String getFirstName() {
     return firstName;
   }
@@ -72,7 +72,7 @@ public class Employee {
   }
 
 //  @Basic
-//  @Column(name = "OFFICECODE", nullable = true, insertable = true, updatable = true, length = 10)
+//  @Column(name = "OFFICE_CODE", nullable = true, insertable = true, updatable = true, length = 10)
 //  public String getOfficecode() {
 //    return officecode;
 //  }
@@ -82,7 +82,7 @@ public class Employee {
 //  }
 
   @ManyToOne
-  @JoinColumn(name = "REPORTSTO" ,referencedColumnName = "EMPLOYEENUMBER")
+  @JoinColumn(name = "REPORTS_TO" ,referencedColumnName = "EMPLOYEE_NUMBER")
   public Employee getReportsTo() {
     return reportsTo;
   }
@@ -92,7 +92,7 @@ public class Employee {
   }
 
   @Basic
-  @Column(name = "JOBTITLE", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "JOB_TITLE", nullable = true, insertable = true, updatable = true, length = 50)
   public String getJobTitle() {
     return jobTitle;
   }
@@ -103,7 +103,7 @@ public class Employee {
 
 
   @ManyToOne()
-  @JoinColumn(name = "OFFICECODE" ,referencedColumnName = "OFFICECODE")
+  @JoinColumn(name = "OFFICE_CODE" ,referencedColumnName = "OFFICE_CODE")
   public Office getOffice() {
     return office;
   }

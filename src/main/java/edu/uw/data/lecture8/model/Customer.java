@@ -37,7 +37,7 @@ public class Customer {
   private Employee salesRep ;
 
   @Id
-  @Column(name = "CUSTOMERNUMBER")
+  @Column(name = "CUSTOMER_NUMBER")
   public Integer getCustomerNumber() {
     return customerNumber;
   }
@@ -47,7 +47,7 @@ public class Customer {
   }
 
   @Basic
-  @Column(name = "CUSTOMERNAME", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "CUSTOMER_NAME", nullable = true, insertable = true, updatable = true, length = 50)
   public String getCustomerName() {
     return customerName;
   }
@@ -57,7 +57,7 @@ public class Customer {
   }
 
   @Basic
-  @Column(name = "CONTACTLASTNAME", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "CONTACT_LAST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
   public String getContactLastname() {
     return contactLastname;
   }
@@ -67,7 +67,7 @@ public class Customer {
   }
 
   @Basic
-  @Column(name = "CONTACTFIRSTNAME", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "CONTACT_FIRST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
   public String getContactFirstname() {
     return contactFirstname;
   }
@@ -87,7 +87,7 @@ public class Customer {
   }
 
   @Basic
-  @Column(name = "ADDRESSLINE1", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "ADDRESS_LINE1", nullable = true, insertable = true, updatable = true, length = 50)
   public String getAddressLine1() {
     return addressLine1;
   }
@@ -97,7 +97,7 @@ public class Customer {
   }
 
   @Basic
-  @Column(name = "ADDRESSLINE2", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "ADDRESS_LINE2", nullable = true, insertable = true, updatable = true, length = 50)
   public String getAddressLine2() {
     return addressLine2;
   }
@@ -127,7 +127,7 @@ public class Customer {
   }
 
   @Basic
-  @Column(name = "POSTALCODE", nullable = true, insertable = true, updatable = true, length = 15)
+  @Column(name = "POSTAL_CODE", nullable = true, insertable = true, updatable = true, length = 15)
   public String getPostalCode() {
     return postalCode;
   }
@@ -147,7 +147,7 @@ public class Customer {
   }
 
 //  @Basic
-//  @Column(name = "SALESREPEMPLOYEENUMBER", nullable = true, insertable = true, updatable = true)
+//  @Column(name = "SALES_REP_EMPLOYEE_NUMBER", nullable = true, insertable = true, updatable = true)
 //  public Integer getSalesRepEmployeeNumber() {
 //    return salesRepEmployeeNumber;
 //  }
@@ -157,7 +157,7 @@ public class Customer {
 //  }
 
   @Basic
-  @Column(name = "CREDITLIMIT", nullable = true, insertable = true, updatable = true, precision = 0)
+  @Column(name = "CREDIT_LIMIT", nullable = true, insertable = true, updatable = true, precision = 0)
   public Double getCreditLimit() {
     return creditLimit;
   }
@@ -178,7 +178,7 @@ public class Customer {
 
 
   @ManyToOne( fetch = FetchType.LAZY)
-  @JoinColumn(name = "SALESREPEMPLOYEENUMBER", referencedColumnName = "EMPLOYEENUMBER")
+  @JoinColumn(name = "SALES_REP_EMPLOYEE_NUMBER", referencedColumnName = "EMPLOYEE_NUMBER")
   public Employee getSalesRep() {
     return salesRep;
   }

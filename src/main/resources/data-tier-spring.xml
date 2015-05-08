@@ -33,10 +33,19 @@
     </bean>
 
 
-    <tx:annotation-driven transaction-manager="txManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+  <!-- if just using mybats (and not JPA too) you can use DataSourceTransactionManager e.g next 3 lines-->
+  <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+      <!--<property name="dataSource" ref="myDataSource" />-->
+  <!--</bean>-->
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="jpaDialect">
+          <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+        </property>
     </bean>
 
 
@@ -44,9 +53,11 @@
           class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
 
-    <!-- This  next line enabled component scanning for all mybatis related spring beans,
-              we don't need to configure each bean in the app context.
-         This is very similar to what we use for JPA entity and repository scanning
+
+
+    <!-- This  next line enables component scanning for all mybatis related spring beans.
+         So we don't need to manually definde a spring bean for each mapper class .
+         (This is very similar to the same typeof scanning we use for JPA Entity and Repository classes.)
     -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="edu.uw.data" />

@@ -20,7 +20,7 @@ public class Product {
   private Productline productlinesByProductline;
 
   @Id
-  @Column(name = "PRODUCTCODE", nullable = false, insertable = true, updatable = true, length = 15)
+  @Column(name = "PRODUCT_CODE", nullable = false, insertable = true, updatable = true, length = 15)
   public String getProductcode() {
     return productcode;
   }
@@ -30,7 +30,7 @@ public class Product {
   }
 
   @Basic
-  @Column(name = "PRODUCTNAME", nullable = true, insertable = true, updatable = true, length = 70)
+  @Column(name = "PRODUCT_NAME", nullable = true, insertable = true, updatable = true, length = 70)
   public String getProductname() {
     return productname;
   }
@@ -40,7 +40,7 @@ public class Product {
   }
 
 //  @Basic
-//  @Column(name = "PRODUCTLINE", nullable = true, insertable = true, updatable = true, length = 50)
+//  @Column(name = "PRODUCT_LINE", nullable = true, insertable = true, updatable = true, length = 50)
 //  public String getProductline() {
 //    return productline;
 //  }
@@ -50,7 +50,7 @@ public class Product {
 //  }
 
   @Basic
-  @Column(name = "PRODUCTSCALE", nullable = true, insertable = true, updatable = true, length = 10)
+  @Column(name = "PRODUCT_SCALE", nullable = true, insertable = true, updatable = true, length = 10)
   public String getProductscale() {
     return productscale;
   }
@@ -60,7 +60,7 @@ public class Product {
   }
 
   @Basic
-  @Column(name = "PRODUCTVENDOR", nullable = true, insertable = true, updatable = true, length = 50)
+  @Column(name = "PRODUCT_VENDOR", nullable = true, insertable = true, updatable = true, length = 50)
   public String getProductvendor() {
     return productvendor;
   }
@@ -70,7 +70,7 @@ public class Product {
   }
 
 //  @Basic
-//  @Column(name = "PRODUCTDESCRIPTION", nullable = true, insertable = true, updatable = true, length = 32700)
+//  @Column(name = "PRODUCT_DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 32700)
 //  public String getProductdescription() {
 //    return productdescription;
 //  }
@@ -80,7 +80,7 @@ public class Product {
 //  }
 
   @Basic
-  @Column(name = "QUANTITYINSTOCK", nullable = true, insertable = true, updatable = true)
+  @Column(name = "QUANTITY_IN_STOCK", nullable = true, insertable = true, updatable = true)
   public Integer getQuantityinstock() {
     return quantityinstock;
   }
@@ -90,7 +90,7 @@ public class Product {
   }
 
   @Basic
-  @Column(name = "BUYPRICE", nullable = true, insertable = true, updatable = true, precision = 0)
+  @Column(name = "BUY_PRICE", nullable = true, insertable = true, updatable = true, precision = 0)
   public Double getBuyprice() {
     return buyprice;
   }
@@ -112,7 +112,7 @@ public class Product {
 
 
   @ManyToOne
-  @JoinColumn(name = "PRODUCTLINE", referencedColumnName = "PRODUCTLINE")
+  @JoinColumn(name = "PRODUCT_LINE", referencedColumnName = "PRODUCT_LINE")
   public Productline getProductlinesByProductline() {
     return productlinesByProductline;
   }

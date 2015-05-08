@@ -27,12 +27,12 @@ import java.util.List;
         //  "classpath:/datasource-standalone-test.xml"
 })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true) //TODO run with rollback=false too, you may see different results because the transaction is commited.
-public class ReportTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class OfficeMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    static final Logger log = LoggerFactory.getLogger(ReportTest.class);
+    static final Logger log = LoggerFactory.getLogger(OfficeMapperTest.class);
 
     @Autowired
-    private CustomerMapper customerMapper;
+    private OfficeMapper officeMapper ;
 
     @Override
     @Resource(name = "dataSource")
@@ -43,10 +43,10 @@ public class ReportTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 
     @Test
-    public void findAllCustomers() {
-        List allCustomers = customerMapper.findAllCustomers();
+    public void findAllOffices() {
+        List allCustomers = officeMapper.findAllOffices();
         for (Object customer : allCustomers) {
-            System.out.println("customer "+customer);
+            System.out.println("office "+customer);
         }
     }
 

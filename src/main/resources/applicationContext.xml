@@ -5,6 +5,6 @@
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="datasource-production.xml"/>
-    <import resource="userapp-spring.xml"/>
+    <import resource="data-tier-spring.xml"/>
 
 </beans>

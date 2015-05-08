@@ -2,9 +2,9 @@ package edu.uw.data.lecture8.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
-import javax.persistence.Entity;
 
 /**
  * Created by credmond on 26/03/15.
@@ -14,7 +14,7 @@ public class PaymentPK implements Serializable {
   private Integer customernumber;
   private String checknumber;
 
-  @Column(name = "CUSTOMERNUMBER", nullable = false, insertable = true, updatable = true)
+  @Column(name = "CUSTOMER_NUMBER", nullable = false, insertable = true, updatable = true)
   @Id
   public Integer getCustomernumber() {
     return customernumber;
@@ -24,7 +24,7 @@ public class PaymentPK implements Serializable {
     this.customernumber = customernumber;
   }
 
-  @Column(name = "CHECKNUMBER", nullable = false, insertable = true, updatable = true, length = 50)
+  @Column(name = "CHECK_NUMBER", nullable = false, insertable = true, updatable = true, length = 50)
   @Basic
   @Id
   public String getChecknumber() {

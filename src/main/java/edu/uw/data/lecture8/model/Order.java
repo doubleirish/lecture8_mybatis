@@ -24,7 +24,7 @@ public class Order {
 
   private OrderDetail orderDetail;
   @Id
-  @Column(name = "ORDERNUMBER" )
+  @Column(name = "ORDER_NUMBER" )
   public Integer getOrderNumber() {
     return orderNumber;
   }
@@ -34,7 +34,7 @@ public class Order {
   }
 
   @Basic
-  @Column(name = "ORDERDATE", nullable = true, insertable = true, updatable = true)
+  @Column(name = "ORDER_DATE", nullable = true, insertable = true, updatable = true)
   public Date getOrderDate() {
     return orderDate;
   }
@@ -44,7 +44,7 @@ public class Order {
   }
 
   @Basic
-  @Column(name = "REQUIREDDATE", nullable = true, insertable = true, updatable = true)
+  @Column(name = "REQUIRED_DATE", nullable = true, insertable = true, updatable = true)
   public Date getRequiredDate() {
     return requiredDate;
   }
@@ -54,7 +54,7 @@ public class Order {
   }
 
   @Basic
-  @Column(name = "SHIPPEDDATE", nullable = true, insertable = true, updatable = true)
+  @Column(name = "SHIPPED_DATE", nullable = true, insertable = true, updatable = true)
   public Date getShippedDate() {
     return shippedDate;
   }
@@ -76,8 +76,8 @@ public class Order {
 
 
   @ManyToOne
-  @JoinColumn(name = "CUSTOMERNUMBER", // col name in ORDER table
-      referencedColumnName = "CUSTOMERNUMBER") // col name in CUSTOMER table
+  @JoinColumn(name = "CUSTOMER_NUMBER", // col name in ORDER table
+      referencedColumnName = "CUSTOMER_NUMBER") // col name in CUSTOMER table
   public Customer getCustomer() {
     return customer;
   }

@@ -16,7 +16,7 @@ public class Payment {
   private Double amount;
 
   @Id
-  @Column(name = "CUSTOMERNUMBER", nullable = false, insertable = true, updatable = true)
+  @Column(name = "CUSTOMER_NUMBER", nullable = false, insertable = true, updatable = true)
   public Integer getCustomernumber() {
     return customernumber;
   }
@@ -27,7 +27,7 @@ public class Payment {
 
   @Id
   @Basic
-  @Column(name = "CHECKNUMBER", nullable = false, insertable = true, updatable = true, length = 50)
+  @Column(name = "CHECK_NUMBER", nullable = false, insertable = true, updatable = true, length = 50)
   public String getChecknumber() {
     return checknumber;
   }
@@ -37,7 +37,7 @@ public class Payment {
   }
 
   @Basic
-  @Column(name = "PAYMENTDATE", nullable = true, insertable = true, updatable = true)
+  @Column(name = "PAYMENT_DATE", nullable = true, insertable = true, updatable = true)
   public Date getPaymentdate() {
     return paymentdate;
   }

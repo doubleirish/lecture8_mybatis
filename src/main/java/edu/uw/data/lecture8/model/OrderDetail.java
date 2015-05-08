@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by credmond on 26/03/15.
  */
 @Entity
-@Table(name = "ORDERDETAILS" )
+@Table(name = "ORDER_DETAILS" )
 public class OrderDetail {
   private Integer orderNumber;
   private Product product;
@@ -15,7 +15,7 @@ public class OrderDetail {
   private Short orderLineNumber;
 
   @Id
-  @Column(name = "ORDERNUMBER" )
+  @Column(name = "ORDER_NUMBER" )
   public Integer getOrderNumber() {
     return orderNumber;
   }
@@ -25,7 +25,7 @@ public class OrderDetail {
   }
 
   @ManyToOne
-  @JoinColumn(name = "PRODUCTCODE")
+  @JoinColumn(name = "PRODUCT_CODE")
   public Product getProduct() {
     return product;
   }
@@ -35,7 +35,7 @@ public class OrderDetail {
   }
 
   @Basic
-  @Column(name = "QUANTITYORDERED", nullable = true, insertable = true, updatable = true)
+  @Column(name = "QUANTITY_ORDERED", nullable = true, insertable = true, updatable = true)
   public Integer getQuantityOrdered() {
     return quantityOrdered;
   }
@@ -45,7 +45,7 @@ public class OrderDetail {
   }
 
   @Basic
-  @Column(name = "PRICEEACH", nullable = true, insertable = true, updatable = true, precision = 0)
+  @Column(name = "PRICE_EACH", nullable = true, insertable = true, updatable = true, precision = 0)
   public Double getPriceEach() {
     return priceEach;
   }
@@ -55,7 +55,7 @@ public class OrderDetail {
   }
 
   @Basic
-  @Column(name = "ORDERLINENUMBER", nullable = true, insertable = true, updatable = true)
+  @Column(name = "ORDER_LINE_NUMBER", nullable = true, insertable = true, updatable = true)
   public Short getOrderLineNumber() {
     return orderLineNumber;
   }
