@@ -12,11 +12,11 @@ public interface OfficeMapper {
   @Select("""
   SELECT
     OFFICE_CODE    as officeCode
-    ,PHONE         as phone
+    ,PHONE
     ,ADDRESS_LINE1 as addressLine1
-    ,ADDRESS_LINE2 as addressLine1
-    ,CITY          as city
-    ,STATE         as state
+    ,ADDRESS_LINE2 as addressLine2
+    ,CITY
+    ,STATE
     ,POSTAL_CODE   as postalCode
     ,TERRITORY     as territory
     ,COUNTRY       as country

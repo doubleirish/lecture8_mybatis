@@ -135,9 +135,9 @@ public class Office {
         .append("addressLine1", addressLine1)
         .append("addressLine2", addressLine2)
         .append("state", state)
-        .append("country", country)
         .append("postalCode", postalCode)
         .append("territory", territory)
+        .append("country", country)
         .toString();
   }
 }
