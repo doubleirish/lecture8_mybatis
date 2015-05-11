@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.uw.data.lecture8.mappers.EmployeeMapper">
+
+    <!-- id matches interface method name -->
+    <select id="countCustomersPerState"   resultMap="map">
+        select count(c.CUSTOMER_NUMBER)   , c.state
+        from CUSTOMERS c
+        group by c.state
+    </select>
+
+
+
+
+
+</mapper>
+
+
+

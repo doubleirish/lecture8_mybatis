@@ -1,5 +1,6 @@
-package edu.uw.data.lecture8.reports;
+package edu.uw.data.lecture8.mappers;
 
+import edu.uw.data.lecture8.dto.CustomerSalesReportDetail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * repeatable tests
@@ -27,12 +29,12 @@ import java.util.List;
         //  "classpath:/datasource-standalone-test.xml"
 })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true) //TODO run with rollback=false too, you may see different results because the transaction is commited.
-public class OfficeMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class SalesReportMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    static final Logger log = LoggerFactory.getLogger(OfficeMapperTest.class);
+    static final Logger log = LoggerFactory.getLogger(SalesReportMapperTest.class);
 
     @Autowired
-    private OfficeMapper officeMapper ;
+    private SalesReportMapper salesReportMapper;
 
     @Override
     @Resource(name = "dataSource")
@@ -43,13 +45,28 @@ public class OfficeMapperTest extends AbstractTransactionalJUnit4SpringContextTe
 
 
     @Test
-    public void findAllOffices() {
-        List allCustomers = officeMapper.findAllOffices();
-        for (Object customer : allCustomers) {
-            System.out.println("office "+customer);
+    public void findBestCustomers() {
+        List<CustomerSalesReportDetail> bestCustomers = salesReportMapper.findBestCustomers();
+        for (CustomerSalesReportDetail customer : bestCustomers) {
+            System.out.println("best customer "+customer);
         }
     }
 
 
+    @Test
+    public void findMostPopularProducts() {
+        List<Map> bestProducts = salesReportMapper.findMostPopularProducts();
+        for (Map bestProduct : bestProducts) {
+            System.out.println("best customer "+ bestProduct);
+        }
+    }
+
+//    @Test
+//    public void countCustomersPerState() {
+//       Object result = salesReportMapper.countCustomersPerState();
+////        for (CustomerSalesReportDetail customer : bestCustomers) {
+////            System.out.println("best customer "+customer);
+////        }
+//    }
 
 }

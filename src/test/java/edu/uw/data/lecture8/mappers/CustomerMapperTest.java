@@ -1,4 +1,4 @@
-package edu.uw.data.lecture8.reports;
+package edu.uw.data.lecture8.mappers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +27,9 @@ import java.util.List;
         //  "classpath:/datasource-standalone-test.xml"
 })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true) //TODO run with rollback=false too, you may see different results because the transaction is commited.
-public class ReportTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class CustomerMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    static final Logger log = LoggerFactory.getLogger(ReportTest.class);
+    static final Logger log = LoggerFactory.getLogger(CustomerMapperTest.class);
 
     @Autowired
     private CustomerMapper customerMapper;

@@ -11,28 +11,28 @@ import java.io.Serializable;
  */
 @Entity
 public class PaymentPK implements Serializable {
-  private Integer customernumber;
-  private String checknumber;
+  private Integer customerNumber;
+  private String checkNumber;
 
   @Column(name = "CUSTOMER_NUMBER", nullable = false, insertable = true, updatable = true)
   @Id
-  public Integer getCustomernumber() {
-    return customernumber;
+  public Integer getCustomerNumber() {
+    return customerNumber;
   }
 
-  public void setCustomernumber(Integer customernumber) {
-    this.customernumber = customernumber;
+  public void setCustomerNumber(Integer customerNumber) {
+    this.customerNumber = customerNumber;
   }
 
   @Column(name = "CHECK_NUMBER", nullable = false, insertable = true, updatable = true, length = 50)
   @Basic
   @Id
-  public String getChecknumber() {
-    return checknumber;
+  public String getCheckNumber() {
+    return checkNumber;
   }
 
-  public void setChecknumber(String checknumber) {
-    this.checknumber = checknumber;
+  public void setCheckNumber(String checkNumber) {
+    this.checkNumber = checkNumber;
   }
 
   @Override
@@ -42,8 +42,8 @@ public class PaymentPK implements Serializable {
 
     PaymentPK paymentPK = (PaymentPK) o;
 
-    if (checknumber != null ? !checknumber.equals(paymentPK.checknumber) : paymentPK.checknumber != null) return false;
-    if (customernumber != null ? !customernumber.equals(paymentPK.customernumber) : paymentPK.customernumber != null)
+    if (checkNumber != null ? !checkNumber.equals(paymentPK.checkNumber) : paymentPK.checkNumber != null) return false;
+    if (customerNumber != null ? !customerNumber.equals(paymentPK.customerNumber) : paymentPK.customerNumber != null)
       return false;
 
     return true;
@@ -51,8 +51,8 @@ public class PaymentPK implements Serializable {
 
   @Override
   public int hashCode() {
-    int result = customernumber != null ? customernumber.hashCode() : 0;
-    result = 31 * result + (checknumber != null ? checknumber.hashCode() : 0);
+    int result = customerNumber != null ? customerNumber.hashCode() : 0;
+    result = 31 * result + (checkNumber != null ? checkNumber.hashCode() : 0);
     return result;
   }
 }

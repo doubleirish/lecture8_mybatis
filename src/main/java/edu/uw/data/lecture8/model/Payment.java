@@ -10,40 +10,40 @@ import java.sql.Date;
 @Table(name = "PAYMENTS", schema = "APP", catalog = "")
 @IdClass(PaymentPK.class)
 public class Payment {
-  private Integer customernumber;
-  private String checknumber;
-  private Date paymentdate;
+  private Integer customerNumber;
+  private String checkNumber;
+  private Date paymentDate;
   private Double amount;
 
   @Id
   @Column(name = "CUSTOMER_NUMBER", nullable = false, insertable = true, updatable = true)
-  public Integer getCustomernumber() {
-    return customernumber;
+  public Integer getCustomerNumber() {
+    return customerNumber;
   }
 
-  public void setCustomernumber(Integer customernumber) {
-    this.customernumber = customernumber;
+  public void setCustomerNumber(Integer customerNumber) {
+    this.customerNumber = customerNumber;
   }
 
   @Id
   @Basic
   @Column(name = "CHECK_NUMBER", nullable = false, insertable = true, updatable = true, length = 50)
-  public String getChecknumber() {
-    return checknumber;
+  public String getCheckNumber() {
+    return checkNumber;
   }
 
-  public void setChecknumber(String checknumber) {
-    this.checknumber = checknumber;
+  public void setCheckNumber(String checkNumber) {
+    this.checkNumber = checkNumber;
   }
 
   @Basic
   @Column(name = "PAYMENT_DATE", nullable = true, insertable = true, updatable = true)
-  public Date getPaymentdate() {
-    return paymentdate;
+  public Date getPaymentDate() {
+    return paymentDate;
   }
 
-  public void setPaymentdate(Date paymentdate) {
-    this.paymentdate = paymentdate;
+  public void setPaymentDate(Date paymentDate) {
+    this.paymentDate = paymentDate;
   }
 
   @Basic
@@ -64,19 +64,19 @@ public class Payment {
     Payment payment = (Payment) o;
 
     if (amount != null ? !amount.equals(payment.amount) : payment.amount != null) return false;
-    if (checknumber != null ? !checknumber.equals(payment.checknumber) : payment.checknumber != null) return false;
-    if (customernumber != null ? !customernumber.equals(payment.customernumber) : payment.customernumber != null)
+    if (checkNumber != null ? !checkNumber.equals(payment.checkNumber) : payment.checkNumber != null) return false;
+    if (customerNumber != null ? !customerNumber.equals(payment.customerNumber) : payment.customerNumber != null)
       return false;
-    if (paymentdate != null ? !paymentdate.equals(payment.paymentdate) : payment.paymentdate != null) return false;
+    if (paymentDate != null ? !paymentDate.equals(payment.paymentDate) : payment.paymentDate != null) return false;
 
     return true;
   }
 
   @Override
   public int hashCode() {
-    int result = customernumber != null ? customernumber.hashCode() : 0;
-    result = 31 * result + (checknumber != null ? checknumber.hashCode() : 0);
-    result = 31 * result + (paymentdate != null ? paymentdate.hashCode() : 0);
+    int result = customerNumber != null ? customerNumber.hashCode() : 0;
+    result = 31 * result + (checkNumber != null ? checkNumber.hashCode() : 0);
+    result = 31 * result + (paymentDate != null ? paymentDate.hashCode() : 0);
     result = 31 * result + (amount != null ? amount.hashCode() : 0);
     return result;
   }

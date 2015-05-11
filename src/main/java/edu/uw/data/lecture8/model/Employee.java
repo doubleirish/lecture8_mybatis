@@ -1,5 +1,8 @@
 package edu.uw.data.lecture8.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -121,18 +124,35 @@ public class Employee {
     this.customers = customers;
   }
 
-  @Override
-  public String toString() {
-    return "Employee{" +
-        "employeenumber=" + employeeNumber +
-        ", lastname='" + lastName + '\'' +
-        ", firstname='" + firstName + '\'' +
-        ", extension='" + extension + '\'' +
-        ", email='" + email + '\'' +
-       // ", reportsto=" + reportsTo +
-        ", jobtitle='" + jobTitle + '\'' +
-       // ", office=" + office +
-        //", customers=" + customers +
-        '}';
-  }
+    @Override
+    public String toString() {
+        ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
+        return new ToStringBuilder(this)
+                .append("employeeNumber", employeeNumber)
+                .append("lastName", lastName)
+                .append("firstName", firstName)
+                .append("extension", extension)
+                .append("email", email)
+              //  .append("reportsTo", reportsTo)
+                .append("jobTitle", jobTitle)
+             //   .append("office", office)
+               // .append("customers", customers)
+                .toString();
+    }
+
+
+    //  @Override
+//  public String toString() {
+//    return "Employee{" +
+//        "employeenumber=" + employeeNumber +
+//        ", lastname='" + lastName + '\'' +
+//        ", firstname='" + firstName + '\'' +
+//        ", extension='" + extension + '\'' +
+//        ", email='" + email + '\'' +
+//       // ", reportsto=" + reportsTo +
+//        ", jobtitle='" + jobTitle + '\'' +
+//       // ", office=" + office +
+//        //", customers=" + customers +
+//        '}';
+//  }
 }

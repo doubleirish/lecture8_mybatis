@@ -8,95 +8,95 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PRODUCTS", schema = "APP", catalog = "")
 public class Product {
-  private String productcode;
-  private String productname;
-  private String productline;
-  private String productscale;
-  private String productvendor;
-  private String productdescription;
-  private Integer quantityinstock;
-  private Double buyprice;
+  private String productCode;
+  private String productName;
+  private String productLine;
+  private String productScale;
+  private String productVendor;
+  private String productDescription;
+  private Integer quantityInStock;
+  private Double buyPrice;
   private Double msrp;
-  private Productline productlinesByProductline;
+  private ProductLine productLinesByProductLine;
 
   @Id
   @Column(name = "PRODUCT_CODE", nullable = false, insertable = true, updatable = true, length = 15)
-  public String getProductcode() {
-    return productcode;
+  public String getProductCode() {
+    return productCode;
   }
 
-  public void setProductcode(String productcode) {
-    this.productcode = productcode;
+  public void setProductCode(String productCode) {
+    this.productCode = productCode;
   }
 
   @Basic
   @Column(name = "PRODUCT_NAME", nullable = true, insertable = true, updatable = true, length = 70)
-  public String getProductname() {
-    return productname;
+  public String getProductName() {
+    return productName;
   }
 
-  public void setProductname(String productname) {
-    this.productname = productname;
+  public void setProductName(String productName) {
+    this.productName = productName;
   }
 
 //  @Basic
 //  @Column(name = "PRODUCT_LINE", nullable = true, insertable = true, updatable = true, length = 50)
-//  public String getProductline() {
-//    return productline;
+//  public String getProductLine() {
+//    return productLine;
 //  }
 //
-//  public void setProductline(String productline) {
-//    this.productline = productline;
+//  public void setProductLine(String productLine) {
+//    this.productLine = productLine;
 //  }
 
   @Basic
   @Column(name = "PRODUCT_SCALE", nullable = true, insertable = true, updatable = true, length = 10)
-  public String getProductscale() {
-    return productscale;
+  public String getProductScale() {
+    return productScale;
   }
 
-  public void setProductscale(String productscale) {
-    this.productscale = productscale;
+  public void setProductScale(String productScale) {
+    this.productScale = productScale;
   }
 
   @Basic
   @Column(name = "PRODUCT_VENDOR", nullable = true, insertable = true, updatable = true, length = 50)
-  public String getProductvendor() {
-    return productvendor;
+  public String getProductVendor() {
+    return productVendor;
   }
 
-  public void setProductvendor(String productvendor) {
-    this.productvendor = productvendor;
+  public void setProductVendor(String productVendor) {
+    this.productVendor = productVendor;
   }
 
 //  @Basic
 //  @Column(name = "PRODUCT_DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 32700)
 //  public String getProductdescription() {
-//    return productdescription;
+//    return productDescription;
 //  }
 //
-//  public void setProductdescription(String productdescription) {
-//    this.productdescription = productdescription;
+//  public void setProductdescription(String productDescription) {
+//    this.productDescription = productDescription;
 //  }
 
   @Basic
   @Column(name = "QUANTITY_IN_STOCK", nullable = true, insertable = true, updatable = true)
-  public Integer getQuantityinstock() {
-    return quantityinstock;
+  public Integer getQuantityInStock() {
+    return quantityInStock;
   }
 
-  public void setQuantityinstock(Integer quantityinstock) {
-    this.quantityinstock = quantityinstock;
+  public void setQuantityInStock(Integer quantityInStock) {
+    this.quantityInStock = quantityInStock;
   }
 
   @Basic
   @Column(name = "BUY_PRICE", nullable = true, insertable = true, updatable = true, precision = 0)
-  public Double getBuyprice() {
-    return buyprice;
+  public Double getBuyPrice() {
+    return buyPrice;
   }
 
-  public void setBuyprice(Double buyprice) {
-    this.buyprice = buyprice;
+  public void setBuyPrice(Double buyPrice) {
+    this.buyPrice = buyPrice;
   }
 
   @Basic
@@ -113,11 +113,11 @@ public class Product {
 
   @ManyToOne
   @JoinColumn(name = "PRODUCT_LINE", referencedColumnName = "PRODUCT_LINE")
-  public Productline getProductlinesByProductline() {
-    return productlinesByProductline;
+  public ProductLine getProductLinesByProductLine() {
+    return productLinesByProductLine;
   }
 
-  public void setProductlinesByProductline(Productline productlinesByProductline) {
-    this.productlinesByProductline = productlinesByProductline;
+  public void setProductLinesByProductLine(ProductLine productLinesByProductLine) {
+    this.productLinesByProductLine = productLinesByProductLine;
   }
 }

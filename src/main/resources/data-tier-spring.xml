@@ -67,6 +67,7 @@
     <!-- MyBatis needs a sqlSessionFactory Bean defined.-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="edu.uw.data.lecture8.model"/>
     </bean>
 
 

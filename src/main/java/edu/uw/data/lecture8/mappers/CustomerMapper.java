@@ -1,4 +1,4 @@
-package edu.uw.data.lecture8.reports;
+package edu.uw.data.lecture8.mappers;
 
 import edu.uw.data.lecture8.model.Customer;
 import org.apache.ibatis.annotations.Select;
@@ -37,8 +37,8 @@ public interface CustomerMapper {
 //     SALES_REP_EMPLOYEE_NUMBER INT,
 //     CREDIT_LIMIT FLOAT(52)
 
-  @Select("SELECT CUSTOMER_NUMBER as customerNumber FROM CUSTOMERS")
-    //SQL not HQL!
+  @Select("SELECT CUSTOMER_NUMBER as customerNumber FROM CUSTOMERS")   //SQL not HQL!
+
   List<Customer> findAllCustomers();
 
 
