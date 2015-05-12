@@ -1,6 +1,10 @@
 package edu.uw.data.lecture8.model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by credmond on 26/03/15.
@@ -8,50 +12,29 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PRODUCT_LINES", schema = "APP", catalog = "")
 public class Productline {
-  private String productline;
-  private String textdescription;
-  private String htmldescription;
-  private byte[] image;
+    private String productLine;
+    private String textDescription;
 
-  @Id
-  @Column(name = "PRODUCT_LINE")
-  public String getProductline() {
-    return productline;
-  }
 
-  public void setProductline(String productline) {
-    this.productline = productline;
-  }
+    @Id
+    @Column(name = "PRODUCT_LINE")
+    public String getProductLine() {
+        return productLine;
+    }
 
-  @Basic
-  @Column(name = "TEXT_DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 4000)
-  public String getTextdescription() {
-    return textdescription;
-  }
+    public void setProductLine(String productLine) {
+        this.productLine = productLine;
+    }
 
-  public void setTextdescription(String textdescription) {
-    this.textdescription = textdescription;
-  }
+    @Basic
+    @Column(name = "TEXT_DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 4000)
+    public String getTextDescription() {
+        return textDescription;
+    }
 
-//  @Basic
-//  @Column(name = "HTML_DESCRIPTION", nullable = true, insertable = true, updatable = true)
-//  public String getHtmldescription() {
-//    return htmldescription;
-//  }
-//
-//  public void setHtmldescription(String htmldescription) {
-//    this.htmldescription = htmldescription;
-//  }
+    public void setTextDescription(String textDescription) {
+        this.textDescription = textDescription;
+    }
 
-//  @Basic
-//  @Column(name = "IMAGE", nullable = true, insertable = true, updatable = true)
-//  public byte[] getImage() {
-//    return image;
-//  }
-//
-//  public void setImage(byte[] image) {
-//    this.image = image;
-//  }
-//
 
 }
