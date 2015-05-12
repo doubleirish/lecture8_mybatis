@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PRODUCT_LINES", schema = "APP", catalog = "")
-public class ProdLine {
+public class ProductLine {
     private String productLine;
     private String textDescription;
 
