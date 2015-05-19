@@ -5,13 +5,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by credmond on 26/03/15.
  */
 @Entity
 @Table(name = "PRODUCT_LINES", schema = "APP", catalog = "")
-public class ProductLine {
+public class ProductLine implements Serializable {
     private String productLine;
     private String textDescription;
 

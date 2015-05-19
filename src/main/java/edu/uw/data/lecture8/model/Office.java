@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "OFFICES")
-public class Office {
+public class Office implements Serializable {
   private String officeCode;
   private String city;
   private String phone;

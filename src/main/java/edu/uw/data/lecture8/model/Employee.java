@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "EMPLOYEES" )
-public class Employee {
+public class Employee implements Serializable{
   private Integer employeeNumber;
   private String lastName;
   private String firstName;

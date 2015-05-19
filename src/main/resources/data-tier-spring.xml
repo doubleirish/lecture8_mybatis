@@ -60,7 +60,7 @@
          (This is very similar to the same typeof scanning we use for JPA Entity and Repository classes.)
     -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="edu.uw.data" />
+        <property name="basePackage" value="edu.uw.data.lecture8.mappers" />
     </bean>
 
 
@@ -68,6 +68,12 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="edu.uw.data.lecture8.model"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+
+    <!-- a thread safe sqlSession -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
 
 

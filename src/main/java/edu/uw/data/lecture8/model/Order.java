@@ -1,7 +1,21 @@
 package edu.uw.data.lecture8.model;
 
-import javax.persistence.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  * Created by credmond on 26/03/15.
@@ -13,12 +27,13 @@ import java.sql.Date;
 })
 @Entity
 @Table(name = "ORDERS" )
-public class Order {
+public class Order  implements Serializable{
   private Integer orderNumber;
   private Date orderDate;
   private Date requiredDate;
   private Date shippedDate;
   private String status;
+    private String comments;
   private Customer customer;
 
 
@@ -96,14 +111,39 @@ public class Order {
     this.orderDetail = orderDetail;
   }
 
-  @Override
-  public String toString() {
-    return "Order{" +
-        "orderNumber=" + orderNumber +
-        ", orderDate=" + orderDate +
-        ", requiredDate=" + requiredDate +
-        ", shippedDate=" + shippedDate +
-        ", status='" + status + '\'' +
-        '}';
-  }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+
+        return new ToStringBuilder(this)
+                .append("orderNumber", orderNumber)
+                .append("orderDate", orderDate)
+                .append("requiredDate", requiredDate)
+                .append("shippedDate", shippedDate)
+                .append("status", status)
+                .append("comments", comments)
+                .toString();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return Objects.equals(orderNumber, order.orderNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderNumber);
+    }
 }

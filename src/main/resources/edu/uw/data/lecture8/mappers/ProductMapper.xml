@@ -1,0 +1,39 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.uw.data.lecture8.mappers.ProductMapper">
+
+
+    <!--
+    Class Product {
+          private String productCode;
+          private String productName;
+          private String productLine;
+          private String productScale;
+          private String productVendor;
+          private String productDescription;
+          private Integer quantityInStock;
+          private Double buyPrice;
+          private Double msrp;
+
+      CREATE TABLE PRODUCTS
+        (
+            PRODUCT_CODE VARCHAR(15),
+            PRODUCT_NAME VARCHAR(70),
+            PRODUCT_LINE VARCHAR(50),
+            PRODUCT_SCALE VARCHAR(10),
+            PRODUCT_VENDOR VARCHAR(50),
+            PRODUCT_DESCRIPTION LONG VARCHAR,
+            QUANTITY_IN_STOCK INT,
+            BUY_PRICE FLOAT(52),
+            MSRP FLOAT(52)
+        );
+
+    -->
+    <select id="findAllProducts"  resultType= "edu.uw.data.lecture8.model.Product">
+
+    </select>
+
+
+</mapper>

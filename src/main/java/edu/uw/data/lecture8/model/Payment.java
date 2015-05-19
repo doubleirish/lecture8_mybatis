@@ -1,5 +1,8 @@
 package edu.uw.data.lecture8.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -80,4 +83,15 @@ public class Payment {
     result = 31 * result + (amount != null ? amount.hashCode() : 0);
     return result;
   }
+
+    @Override
+    public String toString() {
+        ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
+        return new ToStringBuilder(this)
+                .append("customerNumber", customerNumber)
+                .append("checkNumber", checkNumber)
+                .append("paymentDate", paymentDate)
+                .append("amount", amount)
+                .toString();
+    }
 }

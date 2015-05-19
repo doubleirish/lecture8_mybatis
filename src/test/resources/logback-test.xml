@@ -10,4 +10,12 @@
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
+
+
+    <logger name="net.sf.ehcache.Cache" level="DEBUG"/>
+
+    <logger name="java.sql" level="DEBUG"/>
+
+    <logger name="javax.sql" level="DEBUG"/>
+
 </configuration>

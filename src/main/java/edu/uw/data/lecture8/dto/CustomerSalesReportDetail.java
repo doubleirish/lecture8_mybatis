@@ -36,10 +36,9 @@ public class CustomerSalesReportDetail {
     }
 
     @Override
-    public String toString() {
+    public String toString()   {
         ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE) ;
-
-        return new ToStringBuilder(this)
+          return new ToStringBuilder(this)
                 .append("customerNumber", customerNumber)
                 .append("customerName", customerName)
                 .append("totalSales", totalSales)

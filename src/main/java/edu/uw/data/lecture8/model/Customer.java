@@ -1,6 +1,7 @@
 package edu.uw.data.lecture8.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import java.util.Set;
         })
 @Entity
 @Table(name = "CUSTOMERS" )
-public class Customer {
+public class Customer implements Serializable {
   private Integer customerNumber;
   private String customerName;
   private String contactLastname;

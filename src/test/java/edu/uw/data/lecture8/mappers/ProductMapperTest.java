@@ -1,6 +1,7 @@
 package edu.uw.data.lecture8.mappers;
 
-import edu.uw.data.lecture8.model.Employee;
+import edu.uw.data.lecture8.model.Product;
+import edu.uw.data.lecture8.service.ClassicService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -14,10 +15,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.notNullValue;
 
 /**
  * repeatable tests
@@ -27,17 +28,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
     "classpath:/data-tier-spring.xml",
+        "classpath:/cache-spring.xml",
         "classpath:/datasource-embedded-init-p6spy.xml"
         //     "classpath:/datasource-embedded-init.xml"
         //  "classpath:/datasource-standalone-test.xml"
 })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true) //TODO run with rollback=false too, you may see different results because the transaction is commited.
-public class EmployeeMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class ProductMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    static final Logger log = LoggerFactory.getLogger(EmployeeMapperTest.class);
+    static final Logger log = LoggerFactory.getLogger(ProductMapperTest.class);
 
-    @Autowired
-    private EmployeeMapper employeeMapper;
+     @Autowired
+    private ClassicService classicService;
 
     @Override
     @Resource(name = "dataSource")
@@ -46,42 +48,23 @@ public class EmployeeMapperTest extends AbstractTransactionalJUnit4SpringContext
     }
 
 
-    @Test
-    public void findEmployeeByEmpNum_returnsHashmapTest() {
-        Map<String,Object> empMap = employeeMapper.findEmployeeByEmpNum_returnsHashmap(1216);
-        for (String key : empMap.keySet()) {
-            System.out.println("COL "+ key +" : "+ empMap.get(key));
-        }
-
-    }
-
 
     @Test
-    public void findByEmailTest() {
-        String email = "abow@classicmodelcars.com";
-        Employee employee = employeeMapper.findByEmail(email);
+    public void findAllProductsTest_LAB() {
 
-        System.out.println("employee "+ employee);
-        assertThat(employee.getEmail(),is(email));
-    }
+        List<Product> products = classicService.findAllProducts();
+        assertThat(products.size(),greaterThan(0));
+        Product product = products.get(0);
 
+        System.out.println("first product "+product);
 
-    @Test
-    public void findAllEmployees() {
-        List<Employee> employees = employeeMapper.findAllEmployees();
-        for (Employee employee : employees) {
-            System.out.println("employee "+ employee);
-        }
-    }
-
-
-    @Test
-    public void findById() {
-         Employee employee = employeeMapper.findById(1002);
-        System.out.println("employee by "+ employee);
-        assert employee!=null;
+        assertThat(product.getProductCode(), notNullValue());
 
     }
+ 
+
+
+
 
 
 

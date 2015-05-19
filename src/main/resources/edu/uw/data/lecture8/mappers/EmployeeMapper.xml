@@ -4,15 +4,42 @@
 
 <mapper namespace="edu.uw.data.lecture8.mappers.EmployeeMapper">
 
+
+
+    <!-- simple tto setup , returns a Hashmap instead of a Employee (no mapping required) -->
+    <!-- id value matches Employee interface method  name-->
+    <select id="findEmployeeByEmpNum_returnsHashmap" parameterType="int" resultType="hashmap">
+        SELECT * FROM EMPLOYEES WHERE EMPLOYEE_NUMBER = #{id}
+    </select>
+
+
+    <!-- implict mapping using the SQL column aliases,
+          apart from the param,
+           this can be run on the database ) -->
+    <!-- id value matches Employee interface method  name-->
+    <select id="findByEmail"
+            parameterType="string"
+            resultType= "edu.uw.data.lecture8.model.Employee">
+        select
+        EMPLOYEE_NUMBER as employeeNumber
+        ,LAST_NAME as lastName
+        ,FIRST_NAME as firstName
+        ,EXTENSION
+        , JOB_TITLE as jobTitle
+        ,EMAIL
+        from EMPLOYEES
+        where EMAIL =#{id}
+    </select>
+
+
     <!-- Result maps describe the mapping between the columns returned
    from a query, and the class properties.  A result map isn't
-   necessary if the columns (or aliases) match to the properties
+   necessary if the columns (or aliases) match to the properties exactly.
 
-
+  TODO not mapping nested structures "reportsTo" and "office" yet
   private Employee reportsTo;
-
   private Office office;
-   exactly. -->
+   -->
     <resultMap id="EmployeeResult" type="Employee">
         <result property="employeeNumber" column="EMPLOYEE_NUMBER"/>
         <result property="lastName" column="LAST_NAME"/>

@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.uw.data.lecture8.mappers.OrderMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
+        <property name="timeToIdleSeconds" value="3600"/>
+        <property name="timeToLiveSeconds" value="3600"/>
+        <property name="maxEntriesLocalHeap" value="1000"/>
+        <property name="maxEntriesLocalDisk" value="10000000"/>
+        <property name="memoryStoreEvictionPolicy" value="LRU"/>
+    </cache>
+
+
+
+
+
+<!--
+public class Order {
+  private Integer orderNumber;
+  private Date orderDate;
+  private Date requiredDate;
+  private Date shippedDate;
+  private String status;
+  private Customer customer;
+
+  CREATE TABLE ORDERS {
+    ORDER_NUMBER INT,
+    ORDER_DATE DATE,
+    REQUIRED_DATE DATE,
+    SHIPPED_DATE DATE,
+    STATUS VARCHAR(15),
+    COMMENTS LONG VARCHAR,
+    CUSTOMER_NUMBER INT
+
+-->
+
+    <resultMap id="OrderResult" type="Order">
+        <result property="orderNumber" column="ORDER_NUMBER"/>
+        <result property="orderDate" column="ORDER_DATE"/>
+        <result property="requiredDate" column="REQUIRED_DATE"/>
+        <result property="shippedDate" column="SHIPPED_DATE"/>
+        <result property="comments" column="COMMENTS"/>
+        <result property="status" column="STATUS"/>
+        <!--<result property="customer" column="customer"/>-->
+    </resultMap>
+
+    <!-- id matches interface method name -->
+    <select id="findAllOrders"
+            resultMap="OrderResult"
+             useCache="true">
+        select * from ORDERS
+    </select>
+
+
+    <select id="findOrderById"
+            resultMap="OrderResult"  parameterType="int" >
+        select * from ORDERS where ORDER_NUMBER = #{id}
+    </select>
+
+
+
+</mapper>

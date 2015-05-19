@@ -2,6 +2,8 @@ package edu.uw.data.lecture8.mappers
 
 import edu.uw.data.lecture8.model.Office
 import org.apache.ibatis.annotations.Param
+import org.apache.ibatis.annotations.Result
+import org.apache.ibatis.annotations.Results
 import org.apache.ibatis.annotations.Select
 
 /**
@@ -44,4 +46,20 @@ public interface OfficeMapper {
               WHERE  OFFICE_CODE  =   #{officeCode}
   """)
     Office findOfficeByCode(@Param("officeCode") String officeCode);
+
+
+    @Results(value = [ //groovy uses square brackets , java uses curly brackets
+            @Result(column = "OFFICE_CODE", property = "officeCode"),
+            @Result(column = "PHONE", property = "phone"),
+            @Result(column = "ADDRESS_LINE1", property = "addressLine1"),
+            @Result(column = "ADDRESS_LINE2", property = "addressLine2"),
+            @Result(column = "CITY", property = "city"),
+            @Result(column = "STATE", property = "state"),
+            @Result(column = "POSTAL_CODE", property = "postalCode"),
+            @Result(column = "TERRITORY", property = "territory"),
+            @Result(column = "COUNTRY", property = "country"),
+    ])
+    @Select("SELECT * FROM OFFICES WHERE OFFICE_CODE = #{officeCode} ")
+    Office findOfficeByCode_RESULT_MAPPING(@Param("officeCode") String officeCode);
+
 }

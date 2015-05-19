@@ -26,11 +26,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
     "classpath:/data-tier-spring.xml",
-        "classpath:/datasource-embedded-init-p6spy.xml"
+        //"classpath:/datasource-embedded-init-p6spy.xml"
         //     "classpath:/datasource-embedded-init.xml"
         //  "classpath:/datasource-standalone-test.xml"
+          "classpath:/datasource-standalone-p6spy-test.xml"
 })
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true) //TODO run with rollback=false too, you may see different results because the transaction is commited.
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false) //TODO run with rollback=false too, you may see different results because the transaction is commited.
 public class OfficeMapperTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     static final Logger log = LoggerFactory.getLogger(OfficeMapperTest.class);
@@ -55,9 +56,15 @@ public class OfficeMapperTest extends AbstractTransactionalJUnit4SpringContextTe
     }
 
     @Test
-    public void findOfficeByCode() {
-       Office office = officeMapper.findOfficeByCode("7");
-      assertThat(office.getCity(),is("London"));
+        public void findOfficeByCode() {
+        Office office = officeMapper.findOfficeByCode("7");
+        assertThat(office.getCity(),is("London"));
+    }
+
+    @Test
+    public void findOfficeByCode_RESULT_MAPPING() {
+        Office office = officeMapper.findOfficeByCode_RESULT_MAPPING("7");
+        assertThat(office.getCity(),is("London"));
     }
 
 

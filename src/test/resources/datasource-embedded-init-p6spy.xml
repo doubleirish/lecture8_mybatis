@@ -30,7 +30,6 @@
     <jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
         <jdbc:script location="classpath:sql/drop_classic.sql" />
         <jdbc:script location="classpath:sql/create_classic.sql" />
-
         <jdbc:script location="classpath:sql/alter_classic.sql" />
         <jdbc:script location="classpath:sql/insert_1offices.sql" />
         <jdbc:script location="classpath:sql/insert_2employees.sql" />
@@ -40,8 +39,6 @@
         <jdbc:script location="classpath:sql/insert_6orders.sql" />
         <jdbc:script location="classpath:sql/insert_7orderdetails.sql" />
         <jdbc:script location="classpath:sql/insert_8payments.sql" />
-
-
     </jdbc:initialize-database>
 
 </beans>

@@ -1,13 +1,14 @@
 package edu.uw.data.lecture8.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by credmond on 26/03/15.
  */
 @Entity
 @Table(name = "PRODUCTS", schema = "APP", catalog = "")
-public class Product {
+public class Product implements Serializable {
   private String productCode;
   private String productName;
   private String productLine;
