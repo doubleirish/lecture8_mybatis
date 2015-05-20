@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.uw.data.lecture8.mappers.OrderMapper">
-
+<!--
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache">
         <property name="timeToIdleSeconds" value="3600"/>
         <property name="timeToLiveSeconds" value="3600"/>
@@ -11,7 +11,7 @@
         <property name="maxEntriesLocalDisk" value="10000000"/>
         <property name="memoryStoreEvictionPolicy" value="LRU"/>
     </cache>
-
+-->
 
 
 
@@ -49,13 +49,15 @@ public class Order {
     <!-- id matches interface method name -->
     <select id="findAllOrders"
             resultMap="OrderResult"
-             useCache="true">
+           >
         select * from ORDERS
     </select>
 
-
+    <!--useCache="true"-->
     <select id="findOrderById"
-            resultMap="OrderResult"  parameterType="int" >
+            resultMap="OrderResult"  parameterType="int"
+
+            >
         select * from ORDERS where ORDER_NUMBER = #{id}
     </select>
 

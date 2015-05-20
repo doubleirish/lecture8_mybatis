@@ -13,14 +13,14 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
-    <logger name="org.uw" level="TRACE"/>
-    <logger name="ch.qos.logback" level="INFO"/>
 
-    <logger name="net.sf.ehcache.Cache" level="DEBUG"/>
-
-    <logger name="java.sql" level="DEBUG"/>
 
     <logger name="javax.sql" level="DEBUG"/>
-
+    <logger name="edu.uw" level="DEBUG"/>
+    <logger name="ch.qos.logback" level="INFO"/>
+    <logger name="java.sql" level="DEBUG"/>
+    <logger name="javax.sql" level="DEBUG"/>
+    <logger name="net.sf.ehcache" level="DEBUG"/>
+    <logger name="org.springframework.cache" level="DEBUG"/>
 
 </configuration>

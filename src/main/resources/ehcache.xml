@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- in src/main/resources -->
-<ehcache>
+<ehcache name="johnny">
     <diskStore path="java.io.tmpdir" />
 
     <defaultCache maxElementsInMemory="100"
@@ -13,17 +13,17 @@
       />
 
 
-    <!--<cache name="edu.uw.data.lecture8.mappers.OrderMapper"-->
-           <!--maxElementsInMemory="300"   eternal="false"-->
-           <!--timeToIdleSeconds="300"  timeToLiveSeconds="300"-->
-           <!--overflowToDisk="false"  diskPersistent="false"    />-->
+    <cache name="orders"
+           maxElementsInMemory="300"   eternal="false"
+           timeToIdleSeconds="300"  timeToLiveSeconds="300"
+           overflowToDisk="false"  diskPersistent="false"  statistics="true"   />
 
 
 
     <cache name="edu.uw.data.lecture7.model.Employee"
            maxElementsInMemory="300"   eternal="false"
            timeToIdleSeconds="300"  timeToLiveSeconds="300"
-           overflowToDisk="false"  diskPersistent="false"    />
+           overflowToDisk="false"  diskPersistent="false"  statistics="true"   />
 
 
     <cache name="mymethods"
@@ -54,23 +54,27 @@
                 maxElementsInMemory="5"
                eternal="false"
                timeToLiveSeconds="120"
+                statistics="true"
        />
 
        <cache  name="org.hibernate.cache.UpdateTimestampsCache"
                maxElementsInMemory="5000"
                eternal="false"
+               statistics="true"
        />
 
        <cache name="query.AdministrativeAreasPerCountry"
               maxElementsInMemory="5"
               eternal="false"
               timeToLiveSeconds="86400"
+              statistics="true"
        />
 
        <cache name="edu.uw.data.lecture7.model.Customer"
               maxElementsInMemory="300"   eternal="false"
               timeToIdleSeconds="300"  timeToLiveSeconds="300"
-              overflowToDisk="false"  diskPersistent="false"    />
+              overflowToDisk="false"  diskPersistent="false"
+              statistics="true"/>
 
 
 
@@ -81,6 +85,7 @@
               timeToLiveSeconds="3600"
               overflowToDisk="false"
               diskPersistent="false"
+              statistics="true"
                />
 
        <cache name="edu.uw.data.lecture7.model.Productline"
@@ -90,6 +95,7 @@
               timeToLiveSeconds="3600"
               overflowToDisk="false"
               diskPersistent="false"
+              statistics="true"
                />
 
 
@@ -137,6 +143,6 @@
            diskPersistent="false"
            statistics="true"
             />
-     <!-- TODO have to manually add in  statistics-->
+     <!-- TODO have to manually add in  statistics in each cache , defaultCache template statistics settings don't carry down-->
 
 </ehcache>

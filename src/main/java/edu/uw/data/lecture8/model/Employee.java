@@ -25,7 +25,15 @@ public class Employee implements Serializable{
   private Office office;
   private Set<Customer> customers = new HashSet<>();
 
-  @Id
+    public Employee() {
+    }
+
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    @Id
   @Column(name = "EMPLOYEE_NUMBER", nullable = false, insertable = true, updatable = true)
   public Integer getEmployeeNumber() {
     return employeeNumber;

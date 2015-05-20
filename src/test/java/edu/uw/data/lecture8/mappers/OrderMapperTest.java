@@ -2,9 +2,8 @@ package edu.uw.data.lecture8.mappers;
 
 import edu.uw.data.lecture8.model.Order;
 import edu.uw.data.lecture8.service.ClassicService;
+import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -54,25 +53,25 @@ public class OrderMapperTest extends AbstractTransactionalJUnit4SpringContextTes
 
     @Test
     public void findAllOrdersTest() {
-        ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
+
+
+        //
+        // first call miss and put
+        //
         List<Order> orders = classicService.findAllOrders();
         assertThat(orders.size(),greaterThan(0));
         Order order = orders.get(0);
 
-        System.out.println("first order "+order);
+        System.out.println("1st order "+order);
 
         assertThat(order.getOrderNumber(), notNullValue());
 
         orders = classicService.findAllOrders();
         order = orders.get(0);
-        System.out.println("first order  again "+order);
+        System.out.println("2nd order  again "+order);
 
-        CacheManager cacheManager = CacheManager.getInstance();
-        String[] cacheNames = cacheManager.getCacheNames();
-        for (int i = 0; i < cacheNames.length; i++) {
-            String cacheName = cacheNames[i];
-            System.out.println(cacheName+" - "+ cacheManager.getCache(cacheName).getStatistics().toString());
-        }
+
+        printEhcacheStatistics() ;
 
     }
 
@@ -89,17 +88,31 @@ public class OrderMapperTest extends AbstractTransactionalJUnit4SpringContextTes
 
         CacheManager cacheManager = CacheManager.getInstance();
 
-        String cacheName="edu.uw.data.lecture8.mappers.OrderMapper";
-        System.out.println( cacheManager.getCache(cacheName).getStatistics().toString());
+        String orderMapperCache="edu.uw.data.lecture8.mappers.OrderMapper";
+        System.out.println( " Cache Hit on orderMapper is "+cacheManager.getCache(orderMapperCache).getStatistics().toString());
 
 
-//        String[] cacheNames = cacheManager.getCacheNames();
-//        for (int i = 0; i < cacheNames.length; i++) {
-//            String cacheName = cacheNames[i];
-//            System.out.println(cacheName+" - "+ cacheManager.getCache(cacheName).getStatistics().toString());
-//        }
+        printEhcacheStatistics() ;
 
     }
 
+
+    public   void  printEhcacheStatistics() {
+
+
+        List<CacheManager> allCacheManagers = CacheManager.ALL_CACHE_MANAGERS;
+        System.out.println("found  " + allCacheManagers.size() + " cacheManagers");
+        for (CacheManager aCacheManager : allCacheManagers) {
+
+            System.out.println("===== cache manager : " + aCacheManager.getName());
+            String[] cacheNames = aCacheManager.getCacheNames();
+            for (String cacheName : cacheNames) {
+                Cache cache = aCacheManager.getCache(cacheName);
+                net.sf.ehcache.Statistics statistics = cache.getStatistics();
+                System.out.format(" %50s Cache has '%d' hits,  '%d' misses \n", cacheName, statistics.getCacheHits(), statistics.getCacheMisses());
+            }
+
+        }
+    }
 
 }

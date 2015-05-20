@@ -9,12 +9,12 @@ import java.util.List;
 /**
  * Created by Conor on 5/7/2015.
  */
-@CacheConfig(cacheNames="edu.uw.data.lecture8.mappers.OrderMapper")
+@CacheConfig(cacheNames="orders")
 public interface OrderMapper {
-    // cache example
-    @Cacheable
+
+    @Cacheable   // spring method cache example
     List<Order> findAllOrders();
 
-    @Cacheable
+   // mybatis cache example
     Order findOrderById(int orderNumber);
 }

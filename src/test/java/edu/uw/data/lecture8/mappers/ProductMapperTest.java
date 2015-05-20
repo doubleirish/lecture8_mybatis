@@ -61,7 +61,7 @@ public class ProductMapperTest extends AbstractTransactionalJUnit4SpringContextT
         assertThat(product.getProductCode(), notNullValue());
 
     }
- 
+
 
 
 

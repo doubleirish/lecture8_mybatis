@@ -1,6 +1,8 @@
 package edu.uw.data.lecture8.mappers;
 
 import edu.uw.data.lecture8.dto.CustomerSalesReportDetail;
+import edu.uw.data.lecture8.model.Employee;
+import org.apache.ibatis.annotations.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -52,7 +54,6 @@ public class SalesReportMapperTest extends AbstractTransactionalJUnit4SpringCont
         }
     }
 
-
     @Test
     public void findMostPopularProducts() {
         List<Map> bestProducts = salesReportMapper.findMostPopularProducts();
@@ -61,12 +62,18 @@ public class SalesReportMapperTest extends AbstractTransactionalJUnit4SpringCont
         }
     }
 
-//    @Test
-//    public void countCustomersPerState() {
-//       Object result = salesReportMapper.countCustomersPerState();
-////        for (CustomerSalesReportDetail customer : bestCustomers) {
-////            System.out.println("best customer "+customer);
-////        }
-//    }
+    @Test
+    public void findCustomersForSalesRep() {
+        Employee salesRep = new Employee("Larry", "Bott");
+
+        List<String> customers = salesReportMapper.findCustomersForSalesRep(salesRep);
+        System.out.println("found "+customers.size() +" customers for salesrep "+salesRep);
+        for (String customer : customers) {
+
+            System.out.format ("salesrep %s %s   manages   customer %s \n",salesRep.getFirstName(),salesRep.getLastName(),customer);
+        }
+    }
+
+
 
 }
