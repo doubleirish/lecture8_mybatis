@@ -76,25 +76,25 @@ public class OrderMapperTest extends AbstractTransactionalJUnit4SpringContextTes
     }
 
 
-    @Test
-    public void findOrderByIdTest() {
-
-        Order order = classicService.findOrderById(10100);
-        System.out.println("first order  "+order);
-        assertThat(order , notNullValue());
-
-        order = classicService.findOrderById(10100);
-        System.out.println("first order  again "+order);
-
-        CacheManager cacheManager = CacheManager.getInstance();
-
-        String orderMapperCache="edu.uw.data.lecture8.mappers.OrderMapper";
-        System.out.println( " Cache Hit on orderMapper is "+cacheManager.getCache(orderMapperCache).getStatistics().toString());
-
-
-        printEhcacheStatistics() ;
-
-    }
+//    @Test
+//    public void findOrderByIdTest_HoldOverTillLecture9() {
+//
+//        Order order = classicService.findOrderById(10100);
+//        System.out.println("first order  "+order);
+//        assertThat(order , notNullValue());
+//
+//        order = classicService.findOrderById(10100);
+//        System.out.println("first order  again "+order);
+//
+//        CacheManager cacheManager = CacheManager.getInstance();
+//
+//        String orderMapperCache="edu.uw.data.lecture8.mappers.OrderMapper";
+//        System.out.println( " Cache Hit on orderMapper is "+cacheManager.getCache(orderMapperCache).getStatistics().toString());
+//
+//
+//        printEhcacheStatistics() ;
+//
+//    }
 
 
     public   void  printEhcacheStatistics() {
