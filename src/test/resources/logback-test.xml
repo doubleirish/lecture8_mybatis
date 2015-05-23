@@ -23,4 +23,9 @@
     <logger name="javax.sql" level="DEBUG"/>
 
 
+    <logger name="org.mybatis" level="DEBUG" />
+
+
+
+
 </configuration>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- in src/main/resources -->
-<ehcache name="johnny">
+<ehcache name="johnny_ehcache_xml">
     <diskStore path="java.io.tmpdir" />
 
     <defaultCache maxElementsInMemory="100"
@@ -11,6 +11,23 @@
                   diskPersistent="false"
                statistics="true"
       />
+
+
+
+<!-- TODO LAB1 Add a ProductMapper Cache-->
+    <!--
+    <cache name="edu.uw.data.lecture8.mappers.ProductMapper"
+           maxElementsInMemory="300"   eternal="false"
+           timeToIdleSeconds="300"  timeToLiveSeconds="300"
+           overflowToDisk="false"  diskPersistent="false"  statistics="true"   />
+
+           -->
+
+
+    <cache name="edu.uw.data.lecture8.mappers.OrderMapper"
+           maxElementsInMemory="300"   eternal="false"
+           timeToIdleSeconds="300"  timeToLiveSeconds="300"
+           overflowToDisk="false"  diskPersistent="false"  statistics="true"   />
 
 
     <cache name="orders"

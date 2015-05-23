@@ -1,5 +1,7 @@
 package edu.uw.data.lecture8.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -121,4 +123,20 @@ public class Product implements Serializable {
   public void setProductLinesByProductLine(ProductLine productLinesByProductLine) {
     this.productLinesByProductLine = productLinesByProductLine;
   }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("productCode", productCode)
+                .append("productName", productName)
+                .append("productLine", productLine)
+                .append("productScale", productScale)
+                .append("productVendor", productVendor)
+                .append("productDescription", productDescription)
+                .append("quantityInStock", quantityInStock)
+                .append("buyPrice", buyPrice)
+                .append("msrp", msrp)
+                .append("productLinesByProductLine", productLinesByProductLine)
+                .toString();
+    }
 }

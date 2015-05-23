@@ -5,7 +5,6 @@ import edu.uw.data.lecture8.model.Order
 import edu.uw.data.lecture8.model.Product
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.cache.annotation.CacheConfig
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -15,7 +14,7 @@ import javax.annotation.Resource
  */
 @Transactional
 @Service
-@CacheConfig(cacheNames = "orders")
+//@CacheConfig(cacheNames = "orders")
 class ClassicServiceImpl implements  ClassicService{
     static final Logger log = LoggerFactory.getLogger(ClassicServiceImpl.class);
 

@@ -5,32 +5,11 @@
 <mapper namespace="edu.uw.data.lecture8.mappers.ProductMapper">
 
 
+    <!-- TODO CACHE LAB enable EhCache or LoggingEhCache -->
     <!--
-    Class Product {
-          private String productCode;
-          private String productName;
-          private String productLine;
-          private String productScale;
-          private String productVendor;
-          private String productDescription;
-          private Integer quantityInStock;
-          private Double buyPrice;
-          private Double msrp;
-
-      CREATE TABLE PRODUCTS
-        (
-            PRODUCT_CODE VARCHAR(15),
-            PRODUCT_NAME VARCHAR(70),
-            PRODUCT_LINE VARCHAR(50),
-            PRODUCT_SCALE VARCHAR(10),
-            PRODUCT_VENDOR VARCHAR(50),
-            PRODUCT_DESCRIPTION LONG VARCHAR,
-            QUANTITY_IN_STOCK INT,
-            BUY_PRICE FLOAT(52),
-            MSRP FLOAT(52)
-        );
-
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
     -->
+
 
 
     <resultMap id="ProductResult" type="Product">
