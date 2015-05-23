@@ -1,5 +1,7 @@
 package edu.uw.data.lecture8.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,4 +40,11 @@ public class ProductLine implements Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("productLine", productLine)
+                .append("textDescription", textDescription)
+                .toString();
+    }
 }
