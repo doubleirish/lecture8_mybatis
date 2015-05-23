@@ -1,0 +1,75 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.uw.data.lecture8.mappers.OfficeMapper">
+
+   <!--
+CREATE TABLE OFFICE_TYPES
+    OFFICE_TYPE INT,
+    DESCRIPTION VARCHAR(20)
+
+CREATE TABLE OFFICES
+    OFFICE_CODE VARCHAR(10),
+    CITY VARCHAR(50),
+    PHONE VARCHAR(50),
+    ADDRESS_LINE1 VARCHAR(50),
+    ADDRESS_LINE2 VARCHAR(50),
+    STATE VARCHAR(50),
+    COUNTRY VARCHAR(50),
+    POSTAL_CODE VARCHAR(15),
+    TERRITORY VARCHAR(10),
+    OFFICE_TYPE INT
+
+public class Office implements Serializable {
+  private String officeCode;
+  private String city;
+  private String phone;
+  private String addressLine1;
+  private String addressLine2;
+  private String state;
+  private String country;
+  private String postalCode;
+  private String territory;
+
+-->
+
+    <resultMap id="OfficeResult" type="Office">
+        <id     property="officeCode" column="OFFICE_CODE"/>
+        <result property="city" column="CITY"/>
+        <result property="phone" column="PHONE"/>
+        <result property="addressLine1" column="ADDRESS_LINE1"/>
+        <result property="addressLine2" column="ADDRESS_LINE2"/>
+        <result property="state" column="STATE"/>
+        <result property="country" column="COUNTRY"/>
+        <result property="postalCode" column="POSTAL_CODE"/>
+        <result property="territory" column="TERRITORY"/>
+
+        <!-- association is a has-one type of association -->
+        <association property="officeType" javaType="OfficeType" >
+            <id     property="officeType"  column="OFFICE_TYPE"/>
+            <result property="description" column="DESCRIPTION"/>
+        </association>
+
+
+    </resultMap>
+
+    <!--<resultMap id="OfficeTypeResult" type="OfficeType">-->
+        <!--<id     property="officeType"  column="OFFICE_TYPE"/>-->
+        <!--<result property="description" column="DESCRIPTION"/>-->
+    <!--</resultMap>-->
+
+    <!--<select id="selectOfficeType"  resultMap="OfficeTypeResult"  >-->
+        <!--select * from OFFICE_TYPES where OFFICE_TYPE =#{id}-->
+    <!--</select>-->
+
+
+    <select id="findAllOffices_XML_NESTED"  resultMap="OfficeResult"  >
+        select o.*, ot.*
+        from OFFICES o
+        join OFFICE_TYPES ot on o.OFFICE_TYPE =ot.OFFICE_TYPE
+    </select>
+
+
+
+</mapper>

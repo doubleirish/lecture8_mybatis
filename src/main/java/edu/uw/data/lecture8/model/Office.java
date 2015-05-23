@@ -1,7 +1,6 @@
 package edu.uw.data.lecture8.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,6 +22,7 @@ public class Office implements Serializable {
   private String country;
   private String postalCode;
   private String territory;
+  private OfficeType officeType;
 
   private Set<Employee> employees =new HashSet<>();
 
@@ -116,7 +116,6 @@ public class Office implements Serializable {
     this.territory = territory;
   }
 
-
   @OneToMany(mappedBy = "office")
   public Set<Employee> getEmployees() {
     return employees;
@@ -126,19 +125,28 @@ public class Office implements Serializable {
     this.employees = employees;
   }
 
+  public OfficeType getOfficeType() {
+    return officeType;
+  }
+
+  public void setOfficeType(OfficeType officeType) {
+    this.officeType = officeType;
+  }
+
   @Override
   public String toString() {
-    ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
     return new ToStringBuilder(this)
-        .append("officeCode", officeCode)
-        .append("city", city)
-        .append("phone", phone)
-        .append("addressLine1", addressLine1)
-        .append("addressLine2", addressLine2)
-        .append("state", state)
-        .append("postalCode", postalCode)
-        .append("territory", territory)
-        .append("country", country)
-        .toString();
+            .append("officeCode", officeCode)
+            .append("officeType", officeType)
+            .append("city", city)
+            .append("phone", phone)
+            .append("addressLine1", addressLine1)
+            .append("addressLine2", addressLine2)
+            .append("state", state)
+            .append("country", country)
+            .append("postalCode", postalCode)
+            .append("territory", territory)
+
+            .toString();
   }
 }

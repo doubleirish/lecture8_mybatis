@@ -60,6 +60,10 @@ public interface OfficeMapper {
             @Result(column = "COUNTRY", property = "country"),
     ])
     @Select("SELECT * FROM OFFICES WHERE OFFICE_CODE = #{officeCode} ")
-    Office findOfficeByCode_RESULT_MAPPING(@Param("officeCode") String officeCode);
+    Office findOfficeByCode_ANNOTATED_RESULT_MAPPING(@Param("officeCode") String officeCode);
+
+    // see XML mapper file for nested mapping
+    List<Office> findAllOffices_XML_NESTED();
+
 
 }
