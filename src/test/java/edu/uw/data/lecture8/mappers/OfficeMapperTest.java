@@ -1,6 +1,9 @@
 package edu.uw.data.lecture8.mappers;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Lists;
 import edu.uw.data.lecture8.model.Office;
+import edu.uw.data.lecture8.model.OfficeType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -8,17 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import javax.annotation.Resource;
-import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.*;
 
 /**
  * repeatable tests
@@ -81,6 +81,13 @@ public class OfficeMapperTest extends AbstractJUnit4SpringContextTests {
             System.out.println("office nested : " + office);
         }
         assertThat(offices.size(),greaterThan(0));
+        Office office = offices.get(0);
+        OfficeType officeType = office.getOfficeType();
+        System.out.println("officeType is " +officeType);
+        assertThat(officeType,notNullValue());
+
+        assertThat(officeType.getDescription(), isIn(Arrays.asList("Headquarters,Regional,Local".split(","))));
+        //guava variant -> assertThat(officeType.getDescription(), isIn(Lists.newArrayList(Splitter.on(',').split("Headquarters,Regional,Local"))));
     }
 
 

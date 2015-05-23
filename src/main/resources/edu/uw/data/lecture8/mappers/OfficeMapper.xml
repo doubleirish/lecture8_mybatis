@@ -34,7 +34,7 @@ public class Office implements Serializable {
 
 -->
 
-    <resultMap id="OfficeResult" type="Office">
+    <resultMap id="OfficeResultJoin" type="Office">
         <id     property="officeCode" column="OFFICE_CODE"/>
         <result property="city" column="CITY"/>
         <result property="phone" column="PHONE"/>
@@ -50,8 +50,6 @@ public class Office implements Serializable {
             <id     property="officeType"  column="OFFICE_TYPE"/>
             <result property="description" column="DESCRIPTION"/>
         </association>
-
-
     </resultMap>
 
     <!--<resultMap id="OfficeTypeResult" type="OfficeType">-->
@@ -64,7 +62,7 @@ public class Office implements Serializable {
     <!--</select>-->
 
 
-    <select id="findAllOffices_XML_NESTED"  resultMap="OfficeResult"  >
+    <select id="findAllOffices_XML_NESTED"  resultMap="OfficeResultJoin"  >
         select o.*, ot.*
         from OFFICES o
         join OFFICE_TYPES ot on o.OFFICE_TYPE =ot.OFFICE_TYPE
