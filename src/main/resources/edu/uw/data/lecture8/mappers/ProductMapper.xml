@@ -31,8 +31,22 @@
         );
 
     -->
-    <select id="findAllProducts"  resultType= "edu.uw.data.lecture8.model.Product">
 
+
+    <resultMap id="ProductResult" type="Product">
+        <result property="productCode" column="PRODUCT_CODE"/>
+        <result property="productName" column="PRODUCT_NAME"/>
+        <result property="productLine" column="PRODUCT_LINE"/>
+        <result property="productScale" column="PRODUCT_SCALE"/>
+        <result property="productVendor" column="PRODUCT_VENDOR"/>
+        <result property="productDescription" column="PRODUCT_DESCRIPTION"/>
+        <result property="quantityInStock" column="QUANTITY_IN_STOCK"/>
+        <result property="buyPrice" column="BUY_PRICE"/>
+        <result property="msrp" column="MSRP"/>
+    </resultMap>
+
+    <select id="findAllProducts"  resultType= "edu.uw.data.lecture8.model.Product" resultMap="ProductResult">
+       select * from PRODUCTS
     </select>
 
 

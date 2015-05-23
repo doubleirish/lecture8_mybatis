@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ProductMapper {
 
-    //  TODO LAB 1
+    //  TODO LAB 1 populate  <select> in ProductMapper.xml
     List<Product> findAllProducts();
 
 

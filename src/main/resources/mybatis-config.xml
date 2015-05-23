@@ -6,7 +6,7 @@
     <!-- see https://mybatis.github.io/mybatis-3/configuration.html   -->
     <settings>
         <setting name="cacheEnabled" value="true"/>
-        <setting name="mapUnderscoreToCamelCase" value="false"/> <!-- e.g map FIRST_LAST column name to firstLast property name -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- e.g map FIRST_LAST column name to firstLast property name -->
         <!--
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="multipleResultSetsEnabled" value="true"/>
