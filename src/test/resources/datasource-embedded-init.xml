@@ -28,6 +28,7 @@
         <jdbc:script location="classpath:sql/create_classic.sql" />
 
         <jdbc:script location="classpath:sql/alter_classic.sql" />
+        <jdbc:script location="classpath:sql/insert_0office_types.sql" />
         <jdbc:script location="classpath:sql/insert_1offices.sql" />
         <jdbc:script location="classpath:sql/insert_2employees.sql" />
         <jdbc:script location="classpath:sql/insert_3productlines.sql" />
