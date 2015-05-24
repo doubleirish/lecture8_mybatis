@@ -3,7 +3,6 @@ package edu.uw.data.lecture8.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +10,8 @@ import java.util.Set;
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
-@Table(name = "EMPLOYEES" )
+
+
 public class Employee implements Serializable{
   private Integer employeeNumber;
   private String lastName;
@@ -23,6 +22,7 @@ public class Employee implements Serializable{
   private Employee reportsTo;
   private String jobTitle;
   private Office office;
+
   private Set<Customer> customers = new HashSet<>();
 
     public Employee() {
@@ -33,8 +33,8 @@ public class Employee implements Serializable{
         this.lastName = lastName;
     }
 
-    @Id
-  @Column(name = "EMPLOYEE_NUMBER", nullable = false, insertable = true, updatable = true)
+
+
   public Integer getEmployeeNumber() {
     return employeeNumber;
   }
@@ -43,8 +43,8 @@ public class Employee implements Serializable{
     this.employeeNumber = employeenumber;
   }
 
-  @Basic
-  @Column(name = "LAST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getLastName() {
     return lastName;
   }
@@ -53,8 +53,8 @@ public class Employee implements Serializable{
     this.lastName = lastname;
   }
 
-  @Basic
-  @Column(name = "FIRST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getFirstName() {
     return firstName;
   }
@@ -63,8 +63,8 @@ public class Employee implements Serializable{
     this.firstName = firstname;
   }
 
-  @Basic
-  @Column(name = "EXTENSION", nullable = true, insertable = true, updatable = true, length = 10)
+
+
   public String getExtension() {
     return extension;
   }
@@ -73,8 +73,8 @@ public class Employee implements Serializable{
     this.extension = extension;
   }
 
-  @Basic
-  @Column(name = "EMAIL", nullable = true, insertable = true, updatable = true, length = 100)
+
+
   public String getEmail() {
     return email;
   }
@@ -83,8 +83,8 @@ public class Employee implements Serializable{
     this.email = email;
   }
 
-//  @Basic
-//  @Column(name = "OFFICE_CODE", nullable = true, insertable = true, updatable = true, length = 10)
+//
+//
 //  public String getOfficecode() {
 //    return officecode;
 //  }
@@ -93,8 +93,8 @@ public class Employee implements Serializable{
 //    this.officecode = officecode;
 //  }
 
-  @ManyToOne
-  @JoinColumn(name = "REPORTS_TO" ,referencedColumnName = "EMPLOYEE_NUMBER")
+
+
   public Employee getReportsTo() {
     return reportsTo;
   }
@@ -103,8 +103,8 @@ public class Employee implements Serializable{
     this.reportsTo = reportsto;
   }
 
-  @Basic
-  @Column(name = "JOB_TITLE", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getJobTitle() {
     return jobTitle;
   }
@@ -114,8 +114,8 @@ public class Employee implements Serializable{
   }
 
 
-  @ManyToOne()
-  @JoinColumn(name = "OFFICE_CODE" ,referencedColumnName = "OFFICE_CODE")
+
+
   public Office getOffice() {
     return office;
   }
@@ -124,7 +124,7 @@ public class Employee implements Serializable{
     this.office = office;
   }
 
-  @OneToMany(mappedBy = "salesRep")
+
   public Set<Customer> getCustomers() {
     return customers;
   }

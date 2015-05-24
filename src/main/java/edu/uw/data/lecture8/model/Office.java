@@ -1,8 +1,8 @@
 package edu.uw.data.lecture8.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +10,8 @@ import java.util.Set;
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
-@Table(name = "OFFICES")
+
+
 public class Office implements Serializable {
   private String officeCode;
   private String city;
@@ -23,11 +23,10 @@ public class Office implements Serializable {
   private String postalCode;
   private String territory;
   private OfficeType officeType;
-
   private Set<Employee> employees =new HashSet<>();
 
-  @Id
-  @Column(name = "OFFICE_CODE",  length = 10, nullable = false, insertable = true, updatable = true)
+
+
   public String getOfficeCode() {
     return officeCode;
   }
@@ -36,8 +35,8 @@ public class Office implements Serializable {
     this.officeCode = officeCode;
   }
 
-  @Basic
-  @Column(name = "CITY", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getCity() {
     return city;
   }
@@ -46,8 +45,8 @@ public class Office implements Serializable {
     this.city = city;
   }
 
-  @Basic
-  @Column(name = "PHONE", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getPhone() {
     return phone;
   }
@@ -56,8 +55,8 @@ public class Office implements Serializable {
     this.phone = phone;
   }
 
-  @Basic
-  @Column(name = "ADDRESS_LINE1", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getAddressLine1() {
     return addressLine1;
   }
@@ -66,8 +65,8 @@ public class Office implements Serializable {
     this.addressLine1 = addressLine1;
   }
 
-  @Basic
-  @Column(name = "ADDRESS_LINE2", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getAddressLine2() {
     return addressLine2;
   }
@@ -76,8 +75,8 @@ public class Office implements Serializable {
     this.addressLine2 = addressLine2;
   }
 
-  @Basic
-  @Column(name = "STATE", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getState() {
     return state;
   }
@@ -86,8 +85,8 @@ public class Office implements Serializable {
     this.state = state;
   }
 
-  @Basic
-  @Column(name = "COUNTRY", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getCountry() {
     return country;
   }
@@ -96,8 +95,8 @@ public class Office implements Serializable {
     this.country = country;
   }
 
-  @Basic
-  @Column(name = "POSTAL_CODE", nullable = true, insertable = true, updatable = true, length = 15)
+
+
   public String getPostalCode() {
     return postalCode;
   }
@@ -106,8 +105,8 @@ public class Office implements Serializable {
     this.postalCode = postalCode;
   }
 
-  @Basic
-  @Column(name = "TERRITORY", nullable = true, insertable = true, updatable = true, length = 10)
+
+
   public String getTerritory() {
     return territory;
   }
@@ -116,7 +115,7 @@ public class Office implements Serializable {
     this.territory = territory;
   }
 
-  @OneToMany(mappedBy = "office")
+
   public Set<Employee> getEmployees() {
     return employees;
   }
@@ -135,6 +134,7 @@ public class Office implements Serializable {
 
   @Override
   public String toString() {
+    ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
     return new ToStringBuilder(this)
             .append("officeCode", officeCode)
             .append("officeType", officeType)

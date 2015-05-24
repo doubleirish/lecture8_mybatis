@@ -23,13 +23,18 @@ public interface ProductLineMapper {
 //    );
 
 
-    // TODO LAB 1 add a @Select  to map the PRODUCT_LINE table to the ProductLine class
+    //    add a @Select  to map the PRODUCT_LINE table to the ProductLine class
     @Select( "SELECT * FROM PRODUCT_LINES")
     List<ProductLine> findAllProductLines();
 
-    // TODO LAB 2 : add a @Select  to map the PRODUCT_LINE table to the ProductLine class as before
-    // TODO   :  also  include   an extra "WHERE" clause making use of a passed in @Param paremeter
+    //     add a @Select  to map the PRODUCT_LINE table to the ProductLine class as before
+    //     :  also  include   an extra "WHERE" clause making use of a passed in @Param paremeter
     @Select( "SELECT * FROM PRODUCT_LINES WHERE PRODUCT_LINE = #{prodLine}")
      ProductLine findById(@Param("prodLine") String productLine);
+
+
+    ProductLine findProductLineByIdWithProducts_NESTED_RESULTS(String productLine);
+
+    ProductLine findProductLineByIdWithProducts_NESTED_SELECT(String productLine);
 
 }

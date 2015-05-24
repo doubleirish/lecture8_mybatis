@@ -1,0 +1,57 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.uw.data.lecture8.mappers.ProductLineMapper">
+
+    <!-- e.g find by product line 'Ships" -->
+    <select id="findProductLineByIdWithProducts_NESTED_SELECT"   parameterType="string" resultMap="ProductLineNestedSelectResult">
+        select * from PRODUCT_LINES where PRODUCT_LINE =#{id}
+    </select>
+
+    <resultMap id="ProductLineNestedSelectResult" type="ProductLine">
+        <id property="productLine" column="PRODUCT_LINE"/>
+       <collection property="products" ofType="Product" column="PRODUCT_LINE" select="findProductsByProductLine"/>
+    </resultMap>
+
+
+    <select id="findProductsByProductLine"  resultType= "Product" parameterType="string" resultMap="ProductResult">
+       select * from PRODUCTS where PRODUCT_LINE=#{id}
+    </select>
+
+    <resultMap id="ProductResult" type="Product">
+        <id property="productCode" column="PRODUCT_CODE"/>
+        <result property="productName" column="PRODUCT_NAME"/>
+    </resultMap>
+
+
+    <!--
+    |  Nested Result collection
+    -->
+
+    <resultMap id="ProductLineNestedResult" type="ProductLine">
+        <id     property="productLine" column="PRODUCT_LINE"/>
+        <result property="textDescription" column="TEXT_DESCRIPTION"/>
+
+        <collection property="products" ofType="Product">
+            <id     property="productCode" column="PRODUCT_CODE"/>
+            <result property="productName" column="PRODUCT_NAME"/>
+            <result property="productScale" column="PRODUCT_SCALE"/>
+            <result property="productVendor" column="PRODUCT_VENDOR"/>
+            <result property="productDescription" column="PRODUCT_DESCRIPTION"/>
+            <result property="quantityInStock" column="QUANTITY_IN_STOCK"/>
+            <result property="buyPrice" column="BUY_PRICE"/>
+            <result property="msrp" column="MSRP"/>
+            <result  property="productLine" column="PRODUCT_LINE"/>
+        </collection>
+    </resultMap>
+
+    <select id="findProductLineByIdWithProducts_NESTED_RESULTS"   parameterType="string" resultMap="ProductLineNestedResult"  >
+        select PL.PRODUCT_LINE ,PL.TEXT_DESCRIPTION , P.PRODUCT_CODE, P.PRODUCT_NAME ,P.PRODUCT_SCALE, P.PRODUCT_VENDOR, P.PRODUCT_DESCRIPTION,
+                 P.QUANTITY_IN_STOCK, P.BUY_PRICE, P.MSRP
+        from PRODUCT_LINES PL
+        left outer join PRODUCTS  P on PL.PRODUCT_LINE = P.PRODUCT_LINE
+        where PL.PRODUCT_LINE =#{id}
+    </select>
+
+</mapper>

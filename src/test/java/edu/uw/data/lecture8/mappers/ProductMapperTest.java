@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.util.List;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.notNullValue;
@@ -77,6 +78,8 @@ public class ProductMapperTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void findAllProductsTest_CACHE_LAB() {
         verifyEmptyCache();
+
+        printEhcacheStatistics();
         String cacheName = "edu.uw.data.lecture8.mappers.ProductMapper";
         long hitsBefore = getHits(cacheName);
         System.out.println("BEFORE: Cache ["+cacheName+"] has "+hitsBefore+" hits " );
@@ -145,17 +148,11 @@ public class ProductMapperTest extends AbstractJUnit4SpringContextTests {
 
 
     private long getHits(String cacheName) {
-        long hits=-1;
+        CacheManager cacheManager = CacheManager.getInstance();
+        Cache cache = cacheManager.getCache(cacheName);
+        assertNotNull("cache regions not set up for "+cacheName,cache);
+        return cache.getStatistics().getCacheHits();
 
-        System.out.println("spring injected cacheManager  returns "+cacheManager);
-        org.springframework.cache.Cache cache = cacheManager.getCache(cacheName);
-
-        Object nativeCache = cache.getNativeCache();
-        if (nativeCache instanceof net.sf.ehcache.Ehcache) {
-            net.sf.ehcache.Ehcache ehCache = (net.sf.ehcache.Ehcache) nativeCache;
-            hits = ehCache.getStatistics().getCacheHits();
-        }
-        return hits;
     }
 
 

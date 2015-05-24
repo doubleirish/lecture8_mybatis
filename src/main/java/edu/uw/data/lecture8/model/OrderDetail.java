@@ -1,13 +1,12 @@
 package edu.uw.data.lecture8.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
-@Table(name = "ORDER_DETAILS" )
+
+
 public class OrderDetail implements Serializable {
   private Integer orderNumber;
   private Product product;
@@ -15,8 +14,8 @@ public class OrderDetail implements Serializable {
   private Double priceEach;
   private Short orderLineNumber;
 
-  @Id
-  @Column(name = "ORDER_NUMBER" )
+
+
   public Integer getOrderNumber() {
     return orderNumber;
   }
@@ -25,8 +24,8 @@ public class OrderDetail implements Serializable {
     this.orderNumber = ordernumber;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "PRODUCT_CODE")
+
+
   public Product getProduct() {
     return product;
   }
@@ -35,8 +34,8 @@ public class OrderDetail implements Serializable {
     this.product = product;
   }
 
-  @Basic
-  @Column(name = "QUANTITY_ORDERED", nullable = true, insertable = true, updatable = true)
+
+
   public Integer getQuantityOrdered() {
     return quantityOrdered;
   }
@@ -45,8 +44,8 @@ public class OrderDetail implements Serializable {
     this.quantityOrdered = quantityordered;
   }
 
-  @Basic
-  @Column(name = "PRICE_EACH", nullable = true, insertable = true, updatable = true, precision = 0)
+
+
   public Double getPriceEach() {
     return priceEach;
   }
@@ -55,8 +54,8 @@ public class OrderDetail implements Serializable {
     this.priceEach = priceeach;
   }
 
-  @Basic
-  @Column(name = "ORDER_LINE_NUMBER", nullable = true, insertable = true, updatable = true)
+
+
   public Short getOrderLineNumber() {
     return orderLineNumber;
   }

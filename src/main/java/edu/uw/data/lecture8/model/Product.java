@@ -1,15 +1,16 @@
 package edu.uw.data.lecture8.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
-@Table(name = "PRODUCTS", schema = "APP", catalog = "")
+
+
 public class Product implements Serializable {
   private String productCode;
   private String productName;
@@ -20,10 +21,9 @@ public class Product implements Serializable {
   private Integer quantityInStock;
   private Double buyPrice;
   private Double msrp;
-  private ProductLine productLinesByProductLine;
 
-  @Id
-  @Column(name = "PRODUCT_CODE", nullable = false, insertable = true, updatable = true, length = 15)
+
+
   public String getProductCode() {
     return productCode;
   }
@@ -32,8 +32,8 @@ public class Product implements Serializable {
     this.productCode = productCode;
   }
 
-  @Basic
-  @Column(name = "PRODUCT_NAME", nullable = true, insertable = true, updatable = true, length = 70)
+
+
   public String getProductName() {
     return productName;
   }
@@ -42,18 +42,18 @@ public class Product implements Serializable {
     this.productName = productName;
   }
 
-//  @Basic
-//  @Column(name = "PRODUCT_LINE", nullable = true, insertable = true, updatable = true, length = 50)
-//  public String getProductLine() {
-//    return productLine;
-//  }
-//
-//  public void setProductLine(String productLine) {
-//    this.productLine = productLine;
-//  }
 
-  @Basic
-  @Column(name = "PRODUCT_SCALE", nullable = true, insertable = true, updatable = true, length = 10)
+
+  public String getProductLine() {
+    return productLine;
+  }
+
+  public void setProductLine(String productLine) {
+    this.productLine = productLine;
+  }
+
+
+
   public String getProductScale() {
     return productScale;
   }
@@ -62,8 +62,8 @@ public class Product implements Serializable {
     this.productScale = productScale;
   }
 
-  @Basic
-  @Column(name = "PRODUCT_VENDOR", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getProductVendor() {
     return productVendor;
   }
@@ -72,8 +72,8 @@ public class Product implements Serializable {
     this.productVendor = productVendor;
   }
 
-//  @Basic
-//  @Column(name = "PRODUCT_DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 32700)
+//
+//
 //  public String getProductdescription() {
 //    return productDescription;
 //  }
@@ -82,8 +82,8 @@ public class Product implements Serializable {
 //    this.productDescription = productDescription;
 //  }
 
-  @Basic
-  @Column(name = "QUANTITY_IN_STOCK", nullable = true, insertable = true, updatable = true)
+
+
   public Integer getQuantityInStock() {
     return quantityInStock;
   }
@@ -92,8 +92,8 @@ public class Product implements Serializable {
     this.quantityInStock = quantityInStock;
   }
 
-  @Basic
-  @Column(name = "BUY_PRICE", nullable = true, insertable = true, updatable = true, precision = 0)
+
+
   public Double getBuyPrice() {
     return buyPrice;
   }
@@ -102,8 +102,8 @@ public class Product implements Serializable {
     this.buyPrice = buyPrice;
   }
 
-  @Basic
-  @Column(name = "MSRP", nullable = true, insertable = true, updatable = true, precision = 0)
+
+
   public Double getMsrp() {
     return msrp;
   }
@@ -113,19 +113,22 @@ public class Product implements Serializable {
   }
 
 
-
-  @ManyToOne
-  @JoinColumn(name = "PRODUCT_LINE", referencedColumnName = "PRODUCT_LINE")
-  public ProductLine getProductLinesByProductLine() {
-    return productLinesByProductLine;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Product)) return false;
+    Product product = (Product) o;
+    return Objects.equals(productCode, product.productCode);
   }
 
-  public void setProductLinesByProductLine(ProductLine productLinesByProductLine) {
-    this.productLinesByProductLine = productLinesByProductLine;
+  @Override
+  public int hashCode() {
+    return Objects.hash(productCode);
   }
 
-    @Override
+  @Override
     public String toString() {
+        ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
         return new ToStringBuilder(this)
                 .append("productCode", productCode)
                 .append("productName", productName)
@@ -136,7 +139,7 @@ public class Product implements Serializable {
                 .append("quantityInStock", quantityInStock)
                 .append("buyPrice", buyPrice)
                 .append("msrp", msrp)
-                .append("productLinesByProductLine", productLinesByProductLine)
+
                 .toString();
     }
 }

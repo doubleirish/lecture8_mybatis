@@ -1,28 +1,24 @@
 package edu.uw.data.lecture8.model;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
-@Table(name = "OFFICE_TYPES")
+
+
 public class OfficeType implements Serializable {
   private Integer officeType;
   private String description;
 
 
 
-    @Id
-  @Column(name = "OFFICE_TYPE" )
+
+
     public Integer getOfficeType() {
         return officeType;
     }
@@ -32,8 +28,8 @@ public class OfficeType implements Serializable {
     }
 
 
-    @Basic
-  @Column(name = "DESCRIPTION" )
+
+
 
     public String getDescription() {
         return description;
@@ -59,6 +55,7 @@ public class OfficeType implements Serializable {
 
     @Override
     public String toString() {
+        ToStringBuilder.setDefaultStyle(ToStringStyle.MULTI_LINE_STYLE);
         return new ToStringBuilder(this)
                 .append("officeType", officeType)
                 .append("description", description)

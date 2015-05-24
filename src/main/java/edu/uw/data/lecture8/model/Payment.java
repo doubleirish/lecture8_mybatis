@@ -3,23 +3,22 @@ package edu.uw.data.lecture8.model;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
 import java.sql.Date;
 
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
-@Table(name = "PAYMENTS", schema = "APP", catalog = "")
-@IdClass(PaymentPK.class)
+
+
+
 public class Payment {
   private Integer customerNumber;
   private String checkNumber;
   private Date paymentDate;
   private Double amount;
 
-  @Id
-  @Column(name = "CUSTOMER_NUMBER", nullable = false, insertable = true, updatable = true)
+
+
   public Integer getCustomerNumber() {
     return customerNumber;
   }
@@ -28,9 +27,9 @@ public class Payment {
     this.customerNumber = customerNumber;
   }
 
-  @Id
-  @Basic
-  @Column(name = "CHECK_NUMBER", nullable = false, insertable = true, updatable = true, length = 50)
+
+
+
   public String getCheckNumber() {
     return checkNumber;
   }
@@ -39,8 +38,8 @@ public class Payment {
     this.checkNumber = checkNumber;
   }
 
-  @Basic
-  @Column(name = "PAYMENT_DATE", nullable = true, insertable = true, updatable = true)
+
+
   public Date getPaymentDate() {
     return paymentDate;
   }
@@ -49,8 +48,8 @@ public class Payment {
     this.paymentDate = paymentDate;
   }
 
-  @Basic
-  @Column(name = "AMOUNT", nullable = true, insertable = true, updatable = true, precision = 0)
+
+
   public Double getAmount() {
     return amount;
   }

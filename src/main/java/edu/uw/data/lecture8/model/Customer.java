@@ -1,6 +1,5 @@
 package edu.uw.data.lecture8.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,17 +7,9 @@ import java.util.Set;
 /**
  * Created by credmond on 26/03/15.
  */
-@NamedQueries({
-        @NamedQuery(name = "Customer.findAll",    query = "SELECT c from Customer c")
 
-        , @NamedQuery(name = "Customer.findByCustomerFirstAndLast",
-        query = "SELECT c FROM Customer c  WHERE c.contactFirstname = :firstName   AND   c.contactLastname = :lastName ")
 
-//     TODO Lab query for "Customer.findByCity" @NamedQuery  goes Here")
 
-        })
-@Entity
-@Table(name = "CUSTOMERS" )
 public class Customer implements Serializable {
   private Integer customerNumber;
   private String customerName;
@@ -35,10 +26,11 @@ public class Customer implements Serializable {
   private Double creditLimit;
 
   private Set<Order> orders = new HashSet<>();
+  private Set<Payment> payments = new HashSet<>();
   private Employee salesRep ;
 
-  @Id
-  @Column(name = "CUSTOMER_NUMBER")
+
+
   public Integer getCustomerNumber() {
     return customerNumber;
   }
@@ -47,8 +39,8 @@ public class Customer implements Serializable {
     this.customerNumber = customernumber;
   }
 
-  @Basic
-  @Column(name = "CUSTOMER_NAME", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getCustomerName() {
     return customerName;
   }
@@ -57,8 +49,8 @@ public class Customer implements Serializable {
     this.customerName = customername;
   }
 
-  @Basic
-  @Column(name = "CONTACT_LAST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getContactLastname() {
     return contactLastname;
   }
@@ -67,8 +59,8 @@ public class Customer implements Serializable {
     this.contactLastname = contactlastname;
   }
 
-  @Basic
-  @Column(name = "CONTACT_FIRST_NAME", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getContactFirstname() {
     return contactFirstname;
   }
@@ -77,8 +69,8 @@ public class Customer implements Serializable {
     this.contactFirstname = contactfirstname;
   }
 
-  @Basic
-  @Column(name = "PHONE", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getPhone() {
     return phone;
   }
@@ -87,8 +79,8 @@ public class Customer implements Serializable {
     this.phone = phone;
   }
 
-  @Basic
-  @Column(name = "ADDRESS_LINE1", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getAddressLine1() {
     return addressLine1;
   }
@@ -97,8 +89,8 @@ public class Customer implements Serializable {
     this.addressLine1 = addressline1;
   }
 
-  @Basic
-  @Column(name = "ADDRESS_LINE2", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getAddressLine2() {
     return addressLine2;
   }
@@ -107,8 +99,8 @@ public class Customer implements Serializable {
     this.addressLine2 = addressline2;
   }
 
-  @Basic
-  @Column(name = "CITY", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getCity() {
     return city;
   }
@@ -117,8 +109,8 @@ public class Customer implements Serializable {
     this.city = city;
   }
 
-  @Basic
-  @Column(name = "STATE", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getState() {
     return state;
   }
@@ -127,8 +119,8 @@ public class Customer implements Serializable {
     this.state = state;
   }
 
-  @Basic
-  @Column(name = "POSTAL_CODE", nullable = true, insertable = true, updatable = true, length = 15)
+
+
   public String getPostalCode() {
     return postalCode;
   }
@@ -137,8 +129,8 @@ public class Customer implements Serializable {
     this.postalCode = postalcode;
   }
 
-  @Basic
-  @Column(name = "COUNTRY", nullable = true, insertable = true, updatable = true, length = 50)
+
+
   public String getCountry() {
     return country;
   }
@@ -147,8 +139,8 @@ public class Customer implements Serializable {
     this.country = country;
   }
 
-//  @Basic
-//  @Column(name = "SALES_REP_EMPLOYEE_NUMBER", nullable = true, insertable = true, updatable = true)
+//
+//
 //  public Integer getSalesRepEmployeeNumber() {
 //    return salesRepEmployeeNumber;
 //  }
@@ -157,8 +149,8 @@ public class Customer implements Serializable {
 //    this.salesRepEmployeeNumber = salesrepemployeenumber;
 //  }
 
-  @Basic
-  @Column(name = "CREDIT_LIMIT", nullable = true, insertable = true, updatable = true, precision = 0)
+
+
   public Double getCreditLimit() {
     return creditLimit;
   }
@@ -168,7 +160,7 @@ public class Customer implements Serializable {
   }
 
 
-  @OneToMany(mappedBy = "customer" , fetch = FetchType.LAZY)
+
   public Set<Order> getOrders() {
     return orders;
   }
@@ -178,14 +170,23 @@ public class Customer implements Serializable {
   }
 
 
-  @ManyToOne( fetch = FetchType.LAZY)
-  @JoinColumn(name = "SALES_REP_EMPLOYEE_NUMBER", referencedColumnName = "EMPLOYEE_NUMBER")
+
+
   public Employee getSalesRep() {
     return salesRep;
   }
 
   public void setSalesRep(Employee salesRep) {
     this.salesRep = salesRep;
+  }
+
+
+  public Set<Payment> getPayments() {
+    return payments;
+  }
+
+  public void setPayments(Set<Payment> payments) {
+    this.payments = payments;
   }
 
   @Override

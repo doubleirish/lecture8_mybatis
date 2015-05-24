@@ -62,8 +62,12 @@ public interface OfficeMapper {
     @Select("SELECT * FROM OFFICES WHERE OFFICE_CODE = #{officeCode} ")
     Office findOfficeByCode_ANNOTATED_RESULT_MAPPING(@Param("officeCode") String officeCode);
 
-    // see XML mapper file for nested mapping
-    List<Office> findAllOffices_XML_NESTED();
+    // see XML mapper file for nested mapping (PREFERED
+    List<Office> findAllOffices_XML_NESTED_RESULTS();
+
+
+    // see XML mapper file for nested mapping (NOT PREFERED , N+1 problem)
+    List<Office> findAllOffices_XML_NESTED_SELECT();
 
 
 }

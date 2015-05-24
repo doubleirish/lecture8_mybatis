@@ -1,7 +1,5 @@
 package edu.uw.data.lecture8.mappers;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Lists;
 import edu.uw.data.lecture8.model.Office;
 import edu.uw.data.lecture8.model.OfficeType;
 import org.junit.Test;
@@ -73,9 +71,9 @@ public class OfficeMapperTest extends AbstractJUnit4SpringContextTests {
 
 
     @Test
-    public void findAllOffices_XML_NESTED() {
-        System.out.println("findAllOffices_XML_NESTED");
-        List<Office> offices = officeMapper.findAllOffices_XML_NESTED();
+    public void findAllOffices_XML_NESTED_RESULTS() {
+        System.out.println("findAllOffices_XML_NESTED_RESULTS");
+        List<Office> offices = officeMapper.findAllOffices_XML_NESTED_RESULTS();
         System.out.println("found " + offices.size() + " offices");
         for (Office office : offices) {
             System.out.println("office nested : " + office);
@@ -90,6 +88,24 @@ public class OfficeMapperTest extends AbstractJUnit4SpringContextTests {
         //guava variant -> assertThat(officeType.getDescription(), isIn(Lists.newArrayList(Splitter.on(',').split("Headquarters,Regional,Local"))));
     }
 
+
+    @Test
+    public void findAllOffices_XML_NESTED_SELECT() {
+        System.out.println("findAllOffices_XML_NESTED_SELECT");
+        List<Office> offices = officeMapper.findAllOffices_XML_NESTED_SELECT();
+        System.out.println("found " + offices.size() + " offices");
+        for (Office office : offices) {
+            System.out.println("office nested select : " + office);
+        }
+        assertThat(offices.size(),greaterThan(0));
+        Office office = offices.get(0);
+        OfficeType officeType = office.getOfficeType();
+        System.out.println("officeType is " +officeType);
+        assertThat(officeType,notNullValue());
+
+        assertThat(officeType.getDescription(), isIn(Arrays.asList("Headquarters,Regional,Local".split(","))));
+        //guava variant -> assertThat(officeType.getDescription(), isIn(Lists.newArrayList(Splitter.on(',').split("Headquarters,Regional,Local"))));
+    }
 
 
 }

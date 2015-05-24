@@ -9,12 +9,12 @@ import java.io.Serializable;
 /**
  * Created by credmond on 26/03/15.
  */
-@Entity
+
 public class PaymentPK implements Serializable {
   private Integer customerNumber;
   private String checkNumber;
 
-  @Column(name = "CUSTOMER_NUMBER", nullable = false, insertable = true, updatable = true)
+
   @Id
   public Integer getCustomerNumber() {
     return customerNumber;
@@ -24,8 +24,8 @@ public class PaymentPK implements Serializable {
     this.customerNumber = customerNumber;
   }
 
-  @Column(name = "CHECK_NUMBER", nullable = false, insertable = true, updatable = true, length = 50)
-  @Basic
+
+
   @Id
   public String getCheckNumber() {
     return checkNumber;

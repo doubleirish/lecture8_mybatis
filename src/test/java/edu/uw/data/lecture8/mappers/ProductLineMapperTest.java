@@ -1,5 +1,8 @@
 package edu.uw.data.lecture8.mappers;
 
+import edu.uw.data.lecture8.model.Office;
+import edu.uw.data.lecture8.model.OfficeType;
+import edu.uw.data.lecture8.model.Product;
 import edu.uw.data.lecture8.model.ProductLine;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +16,16 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.isIn;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * repeatable tests
@@ -47,8 +55,8 @@ public class ProductLineMapperTest extends AbstractTransactionalJUnit4SpringCont
     }
 
 
-    @Test //LAB 2
-    public void findAllProductLinesTest_LAB() {
+    @Test
+    public void findAllProductLinesTest() {
         List<ProductLine> productLines = productLineMapper.findAllProductLines();
         log.info("found  " + productLines.size() + " product lines");
         assertThat(productLines.size(), greaterThan(0));
@@ -60,12 +68,55 @@ public class ProductLineMapperTest extends AbstractTransactionalJUnit4SpringCont
     }
 
 
-    @Test  //LAB 2
-    public void findByIdTest_LAB() {
+    @Test
+    public void findByIdTest() {
         String productLineName = "Ships";
         ProductLine productLine = productLineMapper.findById(productLineName);
         System.out.println("productLine " + productLine);
         assertThat(productLine, notNullValue());
+
+    }
+
+    @Test
+    public void findProductLineByIdWithProducts_NESTED_SELECT() {
+        String productLineName = "Ships";
+        ProductLine productLine = productLineMapper.findProductLineByIdWithProducts_NESTED_SELECT(productLineName);
+        System.out.println("productLine " + productLine);
+        assertThat(productLine, notNullValue());
+        Set<Product> products = productLine.getProducts();
+        assertThat(products, notNullValue());
+
+        System.out.println("products set suze" + products.size());
+        assertThat(products.size(), greaterThan(0));
+
+        for (Product product : products) {
+           log.info("NESTED SELECT COLLECTION "+product.getProductLine() + ":" + product.getProductName());
+            assertThat(product.getProductLine(), is(productLineName));
+        }
+
+    }
+
+    @Test
+    public void findProductLineByIdWithProducts_NESTED_RESULTS() {
+        String productLineName = "Ships";
+        ProductLine productLine = productLineMapper.findProductLineByIdWithProducts_NESTED_RESULTS(productLineName);
+        System.out.println("productLine " + productLine);
+        assertThat(productLine, notNullValue());
+
+
+        Set<Product> products = productLine.getProducts();
+
+        assertThat(products, notNullValue());
+
+        log.info("found "+products.size()+" products for '"+productLineName+"' productline ");
+        System.out.println("products set size" + products.size());
+
+        assertThat(products.size(), greaterThan(0));
+
+        for (Product product : products) {
+            System.out.println("NESTED RESULT COLLECTION " + product.getProductLine() + ":" + product.getProductName());
+          //  assertEquals(productLineName, product.getProductLine() );
+        }
 
     }
 
