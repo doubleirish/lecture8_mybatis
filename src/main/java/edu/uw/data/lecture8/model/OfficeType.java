@@ -16,8 +16,13 @@ public class OfficeType implements Serializable {
   private String description;
 
 
+    public OfficeType() {
 
+    }
 
+    public OfficeType(Integer officeType) {
+        this.officeType = officeType;
+    }
 
     public Integer getOfficeType() {
         return officeType;

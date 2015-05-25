@@ -6,6 +6,7 @@
     <!-- see https://mybatis.github.io/mybatis-3/configuration.html   -->
     <settings>
         <setting name="cacheEnabled" value="true"/>
+        <setting name="jdbcTypeForNull" value="VARCHAR" />
         <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- e.g map FIRST_LAST column name to firstLast property name -->
         <!--
         <setting name="lazyLoadingEnabled" value="true"/>
@@ -18,8 +19,13 @@
         <setting name="safeRowBoundsEnabled" value="false"/>
         <setting name="localCacheScope" value="SESSION"/>
         <setting name="jdbcTypeForNull" value="OTHER"/>
+
         <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
 
         -->
     </settings>
+
+    <typeAliases>
+        <package name="edu.uw.data.lecture8.dto"/>
+    </typeAliases>
 </configuration>

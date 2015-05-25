@@ -13,8 +13,8 @@ import java.util.Set;
 public class Customer implements Serializable {
   private Integer customerNumber;
   private String customerName;
-  private String contactLastname;
-  private String contactFirstname;
+  private String contactLastName;
+  private String contactFirstName;
   private String phone;
   private String addressLine1;
   private String addressLine2;
@@ -51,22 +51,22 @@ public class Customer implements Serializable {
 
 
 
-  public String getContactLastname() {
-    return contactLastname;
+  public String getContactLastName() {
+    return contactLastName;
   }
 
-  public void setContactLastname(String contactlastname) {
-    this.contactLastname = contactlastname;
+  public void setContactLastName(String contactlastname) {
+    this.contactLastName = contactlastname;
   }
 
 
 
-  public String getContactFirstname() {
-    return contactFirstname;
+  public String getContactFirstName() {
+    return contactFirstName;
   }
 
-  public void setContactFirstname(String contactfirstname) {
-    this.contactFirstname = contactfirstname;
+  public void setContactFirstName(String contactfirstname) {
+    this.contactFirstName = contactfirstname;
   }
 
 
@@ -194,8 +194,8 @@ public class Customer implements Serializable {
     return "Customer{" +
         "customernumber=" + customerNumber +
         ", customername='" + customerName + '\'' +
-        ", contactlastname='" + contactLastname + '\'' +
-        ", contactfirstname='" + contactFirstname + '\'' +
+        ", contactlastname='" + contactLastName + '\'' +
+        ", contactfirstname='" + contactFirstName + '\'' +
         ", phone='" + phone + '\'' +
         ", addressline1='" + addressLine1 + '\'' +
         ", addressline2='" + addressLine2 + '\'' +

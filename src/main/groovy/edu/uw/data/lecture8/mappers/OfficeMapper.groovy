@@ -69,5 +69,11 @@ public interface OfficeMapper {
     // see XML mapper file for nested mapping (NOT PREFERED , N+1 problem)
     List<Office> findAllOffices_XML_NESTED_SELECT();
 
+    Office findOfficeById(Integer officeCode);
+
+    void insertOffice(Office office);
+    void updateOffice(Office office);
+    void deleteOffice(Integer officeCode);
+
 
 }

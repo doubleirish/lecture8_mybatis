@@ -4,35 +4,6 @@
 
 <mapper namespace="edu.uw.data.lecture8.mappers.OfficeMapper">
 
-   <!--
-CREATE TABLE OFFICE_TYPES
-    OFFICE_TYPE INT,
-    DESCRIPTION VARCHAR(20)
-
-CREATE TABLE OFFICES
-    OFFICE_CODE VARCHAR(10),
-    CITY VARCHAR(50),
-    PHONE VARCHAR(50),
-    ADDRESS_LINE1 VARCHAR(50),
-    ADDRESS_LINE2 VARCHAR(50),
-    STATE VARCHAR(50),
-    COUNTRY VARCHAR(50),
-    POSTAL_CODE VARCHAR(15),
-    TERRITORY VARCHAR(10),
-    OFFICE_TYPE INT
-
-public class Office implements Serializable {
-  private String officeCode;
-  private String city;
-  private String phone;
-  private String addressLine1;
-  private String addressLine2;
-  private String state;
-  private String country;
-  private String postalCode;
-  private String territory;
-
--->
 
     <!--
       | ================  Nested Result used Join (higly efficient) RECOMMENDED
@@ -64,6 +35,15 @@ public class Office implements Serializable {
         join OFFICE_TYPES ot on o.OFFICE_TYPE =ot.OFFICE_TYPE
     </select>
 
+
+    <select id="findOfficeById"  parameterType="int" resultMap="OfficeNestedResultJoin"  >
+        select o.*, ot.description
+        from OFFICES o
+        join OFFICE_TYPES ot on o.OFFICE_TYPE =ot.OFFICE_TYPE
+        where o.OFFICE_CODE =#{id}
+    </select>
+
+
 <!--
   | ================  Nested Select (N+1 problem) DISCOURAGED
   -->
@@ -91,6 +71,54 @@ public class Office implements Serializable {
     <select id="findAllOffices_XML_NESTED_SELECT"  resultMap="OfficeResultNestedSelect"  >
         select * from OFFICES
     </select>
+
+<!--
+edu.uw.data.lecture8.model
+ public class Office implements Serializable {
+  private String officeCode;
+  private String city;
+  private String phone;
+  private String addressLine1;
+  private String addressLine2;
+  private String state;
+  private String country;
+  private String postalCode;
+  private String territory;
+  private OfficeType officeType;
+
+
+            useGeneratedKeys="true"
+            keyProperty="officeCode"
+
+                  ,STATE = #{state,javaType=int,jdbcType=NUMERIC}
+-->
+
+    <!--
+      | ================  CRUD, INSERT UPDATE , DELETE
+      -->
+
+    <insert id="insertOffice"
+            flushCache="true">
+        INSERT INTO  OFFICES (OFFICE_CODE,CITY,PHONE,ADDRESS_LINE1,ADDRESS_LINE2,STATE,COUNTRY,POSTAL_CODE,TERRITORY,OFFICE_TYPE)
+        VALUES (#{officeCode},#{city},#{phone},#{addressLine1},#{addressLine2},#{state},#{country},#{postalCode},#{territory},#{officeType.officeType});
+    </insert>
+
+    <update id="updateOffice"  flushCache="true">
+        update OFFICES set
+        CITY = #{city}
+        ,ADDRESS_LINE1 = #{addressLine1}
+        ,ADDRESS_LINE2 = #{addressLine2}
+        ,STATE = #{state,javaType=java.lang.String,jdbcType=VARCHAR}
+        ,COUNTRY = #{country}
+        ,POSTAL_CODE = #{postalCode}
+        ,TERRITORY = #{state}
+        ,OFFICE_TYPE = #{officeType.officeType}
+        where OFFICE_CODE = #{officeCode}
+    </update>
+
+    <delete id="deleteOffice">
+        delete from OFFICES where OFFICE_CODE = #{id}
+    </delete>
 
 
 </mapper>

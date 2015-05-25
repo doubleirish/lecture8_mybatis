@@ -23,6 +23,11 @@ public class Product implements Serializable {
   private Double msrp;
 
 
+  public Product() {}
+
+  public Product(String productCode) {
+    this.productCode = productCode;
+  }
 
   public String getProductCode() {
     return productCode;

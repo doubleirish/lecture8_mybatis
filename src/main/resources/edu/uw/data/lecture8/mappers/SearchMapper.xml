@@ -1,0 +1,134 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.uw.data.lecture8.mappers.SearchMapper">
+
+
+
+
+
+
+
+
+    <select id="searchCustomers"     parameterType="SearchCustomerForm"    resultType="Customer">
+       select * from CUSTOMERS c
+        <where>
+
+            <if test="contactFirstName != null">
+                AND  c.CONTACT_FIRST_NAME like #{contactFirstName}
+            </if>
+
+            <if test="contactLastName != null">
+                AND  c.CONTACT_LAST_NAME like #{contactLastName}
+            </if>
+
+            <if test="state != null">
+                AND  c.STATE = #{state}
+            </if>
+
+            <if test="city != null">
+               AND c.CITY = #{city}
+            </if>
+
+            <if test="country != null">
+                AND  c.COUNTRY = #{country}
+            </if>
+
+            <if test="customerName != null">
+                AND  c.CUSTOMER_NAME like #{customerName}
+            </if>
+
+            <if test="creditLimitGreaterThanOrEqual != null">
+                AND  c.CREDIT_LIMIT &gt;= #{creditLimitGreaterThanOrEqual}
+            </if>
+            <if test="creditLimitLessThanOrEqual != null">
+                AND  c.CREDIT_LIMIT &lt;= #{creditLimitLessThanOrEqual}
+            </if>
+
+
+            <!-- e.g state in ("WA", CA")    -->
+            <if test="states != null and states.size gt 0">
+                AND  c.STATE   in
+                   <foreach collection="states" item="state" separator="," close=")" open="(" >
+                       #{state}
+                   </foreach>
+            </if>
+
+
+            <if test="productPurchased != null and productPurchased.productCode != null">
+                AND customerName like #{productPurchased.product_code}
+            </if>
+        </where>
+   </select>
+
+
+    <!--
+    class Customer
+     private Integer customerNumber;
+      private String customerName;
+      private String contactLastname;
+      private String contactFirstname;
+      private String phone;
+      private String addressLine1;
+      private String addressLine2;
+      private String city;
+      private String state;
+      private String postalCode;
+      private String country;
+      private Double creditLimit;
+
+    CREATE TABLE CUSTOMERS
+       CUSTOMER_NUMBER INT,
+        CUSTOMER_NAME VARCHAR(50),
+        CONTACT_LAST_NAME VARCHAR(50),
+        CONTACT_FIRST_NAME VARCHAR(50),
+        PHONE VARCHAR(50),
+        ADDRESS_LINE1 VARCHAR(50),
+        ADDRESS_LINE2 VARCHAR(50),
+        CITY VARCHAR(50),
+        STATE VARCHAR(50),
+        POSTAL_CODE VARCHAR(15),
+        COUNTRY VARCHAR(50),
+        SALES_REP_EMPLOYEE_NUMBER INT,
+        CREDIT_LIMIT DECIMAL(10,4)   -->
+
+    <resultMap id="CustomerResult" type="Customer">
+        <id property="customerNumber" column="CUSTOMER_NUMBER"/>
+        <result property="customerName" column="CUSTOMER_NAME"/>
+        <result property="customerName" column="CUSTOMER_NAME"/>
+        <result property="customerName" column="CUSTOMER_NAME"/>
+
+    </resultMap>
+
+    <select id="searchCustomersWhoPurchasedAProductLine"     parameterType="SearchCustomerForm"    resultType="Customer">
+        select distinct c.CUSTOMER_NUMBER
+        , CUSTOMER_NAME
+        , CONTACT_LAST_NAME
+        , CONTACT_FIRST_NAME
+        , STATE
+        , CREDIT_LIMIT
+        from CUSTOMERS c
+        <if test="productLine != null">
+            join ORDERS          O  on O.CUSTOMER_NUMBER = C.CUSTOMER_NUMBER
+            join ORDER_DETAILS   OD on OD.ORDER_NUMBER = O.ORDER_NUMBER
+            join PRODUCTS        P  on P.PRODUCT_CODE = OD.PRODUCT_CODE
+            join PRODUCT_LINES   PL on PL.PRODUCT_LINE = P.PRODUCT_LINE
+        </if>
+
+        <where>
+
+            <if test="state != null">
+                AND  c.STATE = #{state}
+            </if>
+
+            <if test="productLine != null">
+               AND PL.PRODUCT_LINE =#{productLine}
+            </if>
+        </where>
+    </select>
+
+
+
+
+</mapper>

@@ -13,7 +13,7 @@ import java.util.Set;
 
 
 public class Office implements Serializable {
-  private String officeCode;
+  private Integer officeCode;
   private String city;
   private String phone;
   private String addressLine1;
@@ -26,12 +26,18 @@ public class Office implements Serializable {
   private Set<Employee> employees =new HashSet<>();
 
 
+  public Office() {
+  }
 
-  public String getOfficeCode() {
+  public Office(Integer officeCode) {
+    this.officeCode = officeCode;
+  }
+
+  public Integer getOfficeCode() {
     return officeCode;
   }
 
-  public void setOfficeCode(String officeCode) {
+  public void setOfficeCode(Integer officeCode) {
     this.officeCode = officeCode;
   }
 
