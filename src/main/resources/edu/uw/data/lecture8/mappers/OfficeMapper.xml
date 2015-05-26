@@ -6,7 +6,7 @@
 
 
     <!--
-      | ================  Nested Result used Join (higly efficient) RECOMMENDED
+      | ================  Nested Result used Join (highly efficient) RECOMMENDED
       -->
     <resultMap id="OfficeNestedResultJoin" type="Office">
         <id     property="officeCode" column="OFFICE_CODE"/>
@@ -41,6 +41,13 @@
         from OFFICES o
         join OFFICE_TYPES ot on o.OFFICE_TYPE =ot.OFFICE_TYPE
         where o.OFFICE_CODE =#{id}
+    </select>
+
+    <select id="findOfficeByCity"  parameterType="java.lang.String" resultMap="OfficeNestedResultJoin"  >
+        select o.*, ot.description
+        from OFFICES o
+        join OFFICE_TYPES ot on o.OFFICE_TYPE =ot.OFFICE_TYPE
+        where o.CITY =#{id}
     </select>
 
 
@@ -97,10 +104,11 @@ edu.uw.data.lecture8.model
       | ================  CRUD, INSERT UPDATE , DELETE
       -->
 
-    <insert id="insertOffice"
+    <insert id="insertOffice"  useGeneratedKeys="true"
+            keyProperty="officeCode"
             flushCache="true">
-        INSERT INTO  OFFICES (OFFICE_CODE,CITY,PHONE,ADDRESS_LINE1,ADDRESS_LINE2,STATE,COUNTRY,POSTAL_CODE,TERRITORY,OFFICE_TYPE)
-        VALUES (#{officeCode},#{city},#{phone},#{addressLine1},#{addressLine2},#{state},#{country},#{postalCode},#{territory},#{officeType.officeType});
+        INSERT INTO  OFFICES (CITY,PHONE,ADDRESS_LINE1,ADDRESS_LINE2,STATE,COUNTRY,POSTAL_CODE,TERRITORY,OFFICE_TYPE)
+        VALUES (#{city},#{phone},#{addressLine1},#{addressLine2},#{state},#{country},#{postalCode},#{territory},#{officeType.officeType})
     </insert>
 
     <update id="updateOffice"  flushCache="true">

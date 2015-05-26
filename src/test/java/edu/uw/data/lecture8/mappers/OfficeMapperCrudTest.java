@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -54,45 +55,71 @@ public class OfficeMapperCrudTest extends AbstractTransactionalJUnit4SpringConte
 
     @Test
     public void insertOffice() {
+        //
+        // verify office does not yet exist
+        //
+        String newCity = "New Dublin";
+        Office officeBefore = officeMapper.findOfficeByCity(newCity);
+        assertNull(officeBefore);  //does not exist yet
+
+        //
+        // build office
+        //
         Office office = new Office();
-        office.setOfficeCode(8);
-        office.setCity("Seattle");
+
+        office.setCity(newCity);
         office.setOfficeType(new OfficeType(1));
+        //
+        // insert office
+        //
         officeMapper.insertOffice(office);
+
+        //
+        // verify   office was inserted correctly
+        //
+
+        Office officeAfter = officeMapper.findOfficeByCity(newCity);
+        assertNotNull(officeAfter);  //does not exist yet
+        assertThat(officeAfter.getCity(),is(newCity));
+
 
     }
 
     @Test
         public void updateOffice() {
-        Office office = officeMapper.findOfficeById(7);
+        Office office = officeMapper.findOfficeByCity("NYC");
         System.out.println("Office BEFORE "+office);
 //
-        String updatedCity = "OF_ANGLES";
-        office.setCity(updatedCity);
-        //String updatedState = "OF_MIND";
-        //office.setState(updatedState);
-        office.setOfficeType(new OfficeType(3));
+
+        String updatedState = "OF_MIND";
+        String updatedPhone = "212-555-1234";
+        office.setPhone(updatedPhone);
+        int updatedOfficeTypeNum = 1;
+        office.setOfficeType(new OfficeType(updatedOfficeTypeNum));
+        //
+        // update
+        //
         officeMapper.updateOffice(office);
 
 
-        Office updateOffice = officeMapper.findOfficeById(7);
+        Office updateOffice = officeMapper.findOfficeByCity("NYC");
         System.out.println("Office AFTER UPDATE "+updateOffice);
 
-        assertThat(updateOffice.getCity(), Matchers.is(updatedCity));
+        assertThat(updateOffice.getPhone(), Matchers.is(updatedPhone));
        // assertThat(updateOffice.getState(), Matchers.is(updatedState));
-        assertThat(updateOffice.getOfficeType().getOfficeType(), Matchers.is(3));
+        assertThat(updateOffice.getOfficeType().getOfficeType(), Matchers.is(updatedOfficeTypeNum));
     }
 
     @Test
     public void deleteOffice() {
-        Office office = officeMapper.findOfficeById(99);
+        Office office = officeMapper.findOfficeByCity("DeleteMe");
         System.out.println("deleting office "+office);
         //
         // delete office
         //
         officeMapper.deleteOffice(99);
 
-        Office officeDel = officeMapper.findOfficeById(99);
+        Office officeDel = officeMapper.findOfficeByCity("DeleteMe");
         System.out.println("deleted office "+officeDel);
         assertNull(officeDel);
     }

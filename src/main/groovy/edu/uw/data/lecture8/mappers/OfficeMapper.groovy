@@ -70,6 +70,7 @@ public interface OfficeMapper {
     List<Office> findAllOffices_XML_NESTED_SELECT();
 
     Office findOfficeById(Integer officeCode);
+    Office findOfficeByCity(String city);
 
     void insertOffice(Office office);
     void updateOffice(Office office);
