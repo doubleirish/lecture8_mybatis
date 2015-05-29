@@ -22,6 +22,7 @@ import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
@@ -91,7 +92,6 @@ public class OfficeMapperCrudTest extends AbstractTransactionalJUnit4SpringConte
         System.out.println("Office BEFORE "+office);
 //
 
-        String updatedState = "OF_MIND";
         String updatedPhone = "212-555-1234";
         office.setPhone(updatedPhone);
         int updatedOfficeTypeNum = 1;
@@ -117,7 +117,7 @@ public class OfficeMapperCrudTest extends AbstractTransactionalJUnit4SpringConte
         //
         // delete office
         //
-        officeMapper.deleteOffice(99);
+        officeMapper.deleteOffice(office.getOfficeCode());
 
         Office officeDel = officeMapper.findOfficeByCity("DeleteMe");
         System.out.println("deleted office "+officeDel);

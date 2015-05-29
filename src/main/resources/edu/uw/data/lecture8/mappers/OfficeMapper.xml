@@ -114,6 +114,7 @@ edu.uw.data.lecture8.model
     <update id="updateOffice"  flushCache="true">
         update OFFICES set
         CITY = #{city}
+        ,PHONE = #{phone}
         ,ADDRESS_LINE1 = #{addressLine1}
         ,ADDRESS_LINE2 = #{addressLine2}
         ,STATE = #{state,javaType=java.lang.String,jdbcType=VARCHAR}
